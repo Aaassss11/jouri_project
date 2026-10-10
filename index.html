@@ -1,0 +1,1805 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>جوري للمفروشات - البرنامج المحاسبي</title>
+    <link rel="stylesheet" href="styles.css?v=20260724-perf-storm-v31" />
+  </head>
+  <body>
+    <button class="mobile-menu-button" type="button" id="mobileMenuButton" aria-label="فتح القائمة">☰</button>
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+    <section class="boot-loader" id="appBootLoader" aria-live="polite">
+      <div class="boot-card">
+        <div class="brand login-brand">
+          <span class="brand-mark">ج</span>
+          <div>
+            <strong>مفروشات جوري</strong>
+            <small id="bootLoaderText">جاري الاتصال بالتخزين الأونلاين...</small>
+          </div>
+        </div>
+        <div class="loader-bar"><span></span></div>
+        <p class="hint">يرجى الانتظار حتى يتم تحميل بيانات الشركة وحسابات Modon.</p>
+      </div>
+    </section>
+    <section class="login-screen hidden" id="loginScreen">
+      <form class="login-card" id="loginForm">
+        <div class="brand login-brand">
+          <span class="brand-mark">ج</span>
+          <div>
+            <strong>مفروشات جوري</strong>
+            <small>تسجيل دخول البرنامج المحاسبي</small>
+          </div>
+        </div>
+        <label>اسم المستخدم<input name="username" autocomplete="username" required placeholder="اسم المستخدم" /></label>
+        <label>كلمة المرور<input type="password" name="password" autocomplete="current-password" required placeholder="كلمة المرور" /></label>
+        <label class="checkbox-control remember-login"><input type="checkbox" name="rememberLogin" value="1" checked /> حفظ تسجيل الدخول على هذا الجهاز</label>
+        <button class="primary" type="submit">دخول</button>
+        <p class="hint">استخدم الحساب الذي أنشأته الإدارة للدخول إلى النظام.</p>
+      </form>
+    </section>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="brand sidebar-brand">
+        <span class="brand-mark">ج</span>
+        <div class="brand-copy">
+          <strong>مفروشات جوري</strong>
+          <small>محاسبة، مخزون، ديون، وModon</small>
+        </div>
+        <button class="sidebar-collapse-button" type="button" id="sidebarCollapseButton" aria-label="تصغير القائمة" title="تصغير القائمة">‹</button>
+      </div>
+      <nav class="nav" aria-label="القائمة الرئيسية">
+        <div class="nav-group" data-nav-group="home">
+          <button class="nav-group-toggle" type="button" aria-expanded="true">
+            <span class="nav-group-icon" aria-hidden="true">⌂</span><span class="nav-group-label">الرئيسية</span><span class="nav-group-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="nav-group-items">
+            <button class="nav-item active" data-view="dashboard"><span class="nav-item-icon">▦</span><span class="nav-item-label">لوحة الحسابات</span></button>
+          </div>
+        </div>
+        <div class="nav-group" data-nav-group="sales">
+          <button class="nav-group-toggle" type="button" aria-expanded="true">
+            <span class="nav-group-icon" aria-hidden="true">◫</span><span class="nav-group-label">المبيعات والزبائن</span><span class="nav-group-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="nav-group-items">
+            <button class="nav-item" data-view="sales"><span class="nav-item-icon">＋</span><span class="nav-item-label">فاتورة بيع جديدة</span></button>
+            <button class="nav-item" data-view="customers"><span class="nav-item-icon">◎</span><span class="nav-item-label">حسابات الزبائن</span></button>
+            <button class="nav-item" data-view="invoiceArchive"><span class="nav-item-icon">▤</span><span class="nav-item-label">سجل الفواتير</span></button>
+          </div>
+        </div>
+        <div class="nav-group" data-nav-group="inventory">
+          <button class="nav-group-toggle" type="button" aria-expanded="true">
+            <span class="nav-group-icon" aria-hidden="true">▥</span><span class="nav-group-label">المشتريات والمخزون</span><span class="nav-group-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="nav-group-items">
+            <button class="nav-item" data-view="products"><span class="nav-item-icon">◇</span><span class="nav-item-label">المنتجات والأسعار</span></button>
+            <button class="nav-item" data-view="inventory"><span class="nav-item-icon">▦</span><span class="nav-item-label">المخزون والحركات</span></button>
+            <button class="nav-item" data-view="purchaseInvoices"><span class="nav-item-icon">＋</span><span class="nav-item-label">فاتورة شراء جديدة</span></button>
+            <button class="nav-item" data-view="suppliers"><span class="nav-item-icon">◎</span><span class="nav-item-label">حسابات الموردين</span></button>
+          </div>
+        </div>
+        <div class="nav-group" data-nav-group="modon">
+          <button class="nav-group-toggle" type="button" aria-expanded="true">
+            <span class="nav-group-icon" aria-hidden="true">M</span><span class="nav-group-label">Modon والتوصيل</span><span class="nav-group-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="nav-group-items">
+            <button class="nav-item" data-view="modonFollow"><span class="nav-item-icon">▦</span><span class="nav-item-label">مركز Modon</span></button>
+          </div>
+        </div>
+        <div class="nav-group" data-nav-group="cash">
+          <button class="nav-group-toggle" type="button" aria-expanded="true">
+            <span class="nav-group-icon" aria-hidden="true">◉</span><span class="nav-group-label">الحركات المالية</span><span class="nav-group-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="nav-group-items">
+            <button class="nav-item" data-view="vouchers"><span class="nav-item-icon">▤</span><span class="nav-item-label">مركز السندات</span></button>
+          </div>
+        </div>
+        <div class="nav-group" data-nav-group="management">
+          <button class="nav-group-toggle" type="button" aria-expanded="true">
+            <span class="nav-group-icon" aria-hidden="true">◫</span><span class="nav-group-label">التقارير والإدارة</span><span class="nav-group-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="nav-group-items">
+            <button class="nav-item" data-view="reports"><span class="nav-item-icon">▥</span><span class="nav-item-label">التقارير</span></button>
+            <button class="nav-item" data-view="employees"><span class="nav-item-icon">◎</span><span class="nav-item-label">حسابات الموظفين</span></button>
+            <button class="nav-item" data-view="settings"><span class="nav-item-icon">⚙</span><span class="nav-item-label">الإعدادات العامة</span></button>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="app">
+      <header class="topbar">
+        <div class="page-heading">
+          <h1 id="pageTitle">لوحة الحسابات</h1>
+          <p id="pageSubtitle">ملخص الإدارة لكل المبيعات، القاصة، المخزون، الديون، وحسابات Modon.</p>
+        </div>
+        <div class="top-actions">
+          <label class="compact">نطاق العرض
+            <select id="employeeScope"></select>
+          </label>
+          <span class="connection" id="currentUserBadge">المستخدم: الإدارة</span>
+          <span class="connection" id="appVersionBadge" title="رقم نسخة النظام - تأكد أن كل الأجهزة على نفس الرقم">النسخة: —</span>
+          <span class="connection" id="storageState" role="button" tabindex="0" title="فحص اتصال البيانات">Data: غير متصل</span>
+          <span class="connection" id="connectionState" role="button" tabindex="0" title="فحص اتصال Modon">Modon: غير متصل</span>
+          <button class="ghost" id="logoutButton">خروج</button>
+          <button class="primary page-action" id="pagePrimaryAction" data-view-jump="sales">فاتورة بيع</button>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboard">
+        <header class="dashboard-command-header">
+          <div>
+            <span class="eyebrow">نظرة الإدارة</span>
+            <h2>الحسابات في مكان واحد</h2>
+            <p>كل مؤشر يفتح السجل الذي تكوّن منه مباشرة.</p>
+          </div>
+          <div class="dashboard-command-actions">
+            <button class="primary" type="button" data-view-jump="sales">فاتورة بيع</button>
+            <button class="ghost" type="button" data-view-jump="purchaseInvoices">فاتورة شراء</button>
+            <button class="ghost" type="button" data-target-action="openVoucherCreate">إنشاء سند</button>
+          </div>
+        </header>
+        <section class="dashboard-quick-actions" aria-label="اختصارات العمليات">
+          <button class="dashboard-quick-card sale" type="button" data-view-jump="sales"><span class="dashboard-quick-icon">🛒</span><strong>فاتورة بيع</strong><small>إنشاء فاتورة بيع جديدة</small></button>
+          <button class="dashboard-quick-card return-sale" type="button" data-view-jump="invoiceArchive"><span class="dashboard-quick-icon">↩</span><strong>إرجاع المبيعات</strong><small>عرض ومعالجة فواتير البيع</small></button>
+          <button class="dashboard-quick-card purchase" type="button" data-view-jump="purchaseInvoices"><span class="dashboard-quick-icon">🛍</span><strong>فاتورة شراء</strong><small>إضافة فاتورة شراء</small></button>
+          <button class="dashboard-quick-card receipt" type="button" data-target-action="openVoucherCreate"><span class="dashboard-quick-icon">▣</span><strong>سند قبض</strong><small>تسجيل مبلغ مقبوض</small></button>
+          <button class="dashboard-quick-card payment" type="button" data-target-action="openExpenseVoucher"><span class="dashboard-quick-icon">▤</span><strong>سند صرف</strong><small>تسجيل مصروف من القاصة</small></button>
+          <button class="dashboard-quick-card customers" type="button" data-view-jump="accounts"><span class="dashboard-quick-icon">♙</span><strong>الزبائن</strong><small>الحسابات وكشف الحركة</small></button>
+          <button class="dashboard-quick-card suppliers" type="button" data-view-jump="suppliers"><span class="dashboard-quick-icon">♟</span><strong>الموردون</strong><small>الأرصدة وكشوف الحساب</small></button>
+          <button class="dashboard-quick-card products" type="button" data-view-jump="products"><span class="dashboard-quick-icon">□</span><strong>المواد / الأصناف</strong><small>المنتجات والأسعار</small></button>
+          <button class="dashboard-quick-card reports" type="button" data-view-jump="reports"><span class="dashboard-quick-icon">⌁</span><strong>كشف الحساب</strong><small>التقارير والحركات</small></button>
+        </section>
+        <section class="dashboard-modon-today panel" aria-label="طلبات Modon اليوم">
+          <div class="panel-head"><div><span class="eyebrow">Modon والتوصيل</span><h2>طلبات اليوم حسب الحساب</h2><p class="hint">عدد الطلبات المسجلة اليوم لكل حساب موظف.</p></div><button class="ghost" type="button" data-view-jump="modonToday">عرض طلبات اليوم</button></div>
+          <div id="dashboardModonToday" class="dashboard-modon-today-grid"></div>
+        </section>
+        <section class="dashboard-insights" id="dashboardMetrics"></section>
+        <section class="dashboard-alerts" id="dashboardAlerts"></section>
+        <section class="dashboard-visual-grid" aria-label="ملخص بصري للحسابات">
+          <section class="dashboard-visual-panel dashboard-top-products"><div class="panel-head"><div><span class="eyebrow">المخزون</span><h2>الأصناف الأكثر مبيعًا</h2></div></div><div id="dashboardTopProducts"></div></section>
+          <section class="dashboard-visual-panel dashboard-sales-trend"><div class="panel-head"><div><span class="eyebrow">المبيعات</span><h2>المبيعات خلال الفترة</h2></div></div><div id="dashboardSalesTrend"></div></section>
+          <section class="dashboard-visual-panel dashboard-sales-mix"><div class="panel-head"><div><span class="eyebrow">الحركة المالية</span><h2>نسبة المبيعات والمشتريات</h2></div></div><div id="dashboardSalesMix"></div></section>
+        </section>
+        <div class="dashboard-activity-grid">
+          <section class="panel dashboard-activity-panel">
+            <div class="panel-head">
+              <div><span class="eyebrow">المبيعات</span><h2>آخر الفواتير</h2></div>
+              <button class="text-button" data-drilldown="sales">عرض الكل</button>
+            </div>
+            <div class="table-wrap dashboard-table-wrap">
+              <table class="dashboard-activity-table">
+                <thead>
+                  <tr>
+                    <th>الفاتورة</th>
+                    <th>الزبون</th>
+                    <th>المبلغ</th>
+                    <th>الحالة</th>
+                  </tr>
+                </thead>
+                <tbody id="recentInvoices"></tbody>
+              </table>
+            </div>
+          </section>
+          <section class="panel dashboard-activity-panel">
+            <div class="panel-head">
+              <div><span class="eyebrow">القاصة</span><h2>آخر الحركات</h2></div>
+              <button class="text-button" data-drilldown="cash">كشف القاصة</button>
+            </div>
+            <div class="dashboard-cash-list" id="cashLedger"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view sales-page" id="sales">
+        <form class="sales-workspace" id="invoiceForm">
+          <header class="sales-invoice-toolbar">
+            <div>
+              <span class="eyebrow">المبيعات</span>
+              <h2>فاتورة جديدة</h2>
+            </div>
+            <button class="ghost hidden" type="button" id="backToInvoices">رجوع للفواتير</button>
+          </header>
+
+          <div class="sales-builder-layout">
+            <div class="sales-builder-main">
+              <section class="panel sales-customer-panel">
+                <div class="sales-section-head">
+                  <div><span class="eyebrow">بيانات الفاتورة</span><h3>الزبون والمنشئ</h3></div>
+                </div>
+                <div class="fields sales-customer-fields">
+                  <label>منشئ الفاتورة<select id="invoiceEmployee" disabled></select></label>
+                  <label class="search-combo sale-customer-combo">اسم الزبون
+                    <input id="saleCustomerName" name="customerName" aria-label="اسم الزبون" required placeholder="اكتب اسم الزبون أو رقم الهاتف" autocomplete="off" />
+                    <div class="suggestions sale-customer-suggestions" id="saleCustomerSuggestions"></div>
+                  </label>
+                  <label>هاتف الزبون (اختياري)<input name="customerPhone" inputmode="tel" autocomplete="tel" placeholder="مثال: 07700266955" /></label>
+                  <fieldset class="sale-price-mode-control wide">
+                    <legend>نوع تسعير الفاتورة</legend>
+                    <label>
+                      <input type="radio" name="invoicePriceType" value="retail" checked />
+                      <span><strong>مفرد</strong><small>استخدام سعر المفرد المسجل لكل منتج</small></span>
+                    </label>
+                    <label>
+                      <input type="radio" name="invoicePriceType" value="wholesale" />
+                      <span><strong>جملة</strong><small>استخدام سعر الجملة المسجل لكل منتج</small></span>
+                    </label>
+                  </fieldset>
+                </div>
+                <div id="saleCustomerAccountSummary" class="sale-customer-account-summary" aria-live="polite"></div>
+              </section>
+
+              <section class="panel sales-lines-panel">
+                <div class="sales-section-head">
+                  <div><span class="eyebrow">محتوى الفاتورة</span><h3>المنتجات والبنود</h3></div>
+                </div>
+                <div class="product-picker search-combo sales-product-picker">
+                  <label>إضافة منتج<input id="saleProductSearch" autocomplete="off" placeholder="اكتب اسم المنتج أو جزءًا منه" /></label>
+                  <div class="suggestions" id="saleProductSuggestions"></div>
+                </div>
+                <div class="sales-lines-empty" id="saleLinesEmpty">
+                  <strong>لم تتم إضافة منتجات بعد</strong>
+                  <span>استخدم حقل البحث أعلاه لإضافة أول منتج إلى الفاتورة.</span>
+                </div>
+                <div class="table-wrap sales-lines-table">
+                  <table>
+                    <thead><tr><th>المنتج</th><th>الكمية</th><th>السعر</th><th>خصم البند</th><th>الإجمالي</th><th class="sale-actions-head"></th></tr></thead>
+                    <tbody id="saleLines"></tbody>
+                  </table>
+                </div>
+              </section>
+
+              <aside class="panel sale-checkout-panel">
+              <div class="sales-section-head checkout-head">
+                <div><span class="eyebrow">الدفع</span><h3>التحصيل والحفظ</h3></div>
+              </div>
+              <div class="sale-mode-preview" id="salePaymentModePreview"></div>
+              <div class="invoice-controls sale-payment-controls">
+                <label>خصم عام على الفاتورة<input type="number" name="invoiceDiscount" min="0" value="0" /></label>
+                <label>المبلغ المدفوع الآن<input type="number" name="paidAmount" min="0" value="0" /></label>
+                <label class="checkbox-control installment-toggle"><input type="checkbox" name="isInstallment" id="isInstallment" value="1" /><span><strong>بيع بالتقسيط</strong><small>إنشاء جدول استحقاقات للمتبقي</small></span></label>
+              </div>
+              <div class="installment-box" id="installmentBox">
+                <label>نوع التقسيط
+                  <select name="installmentFrequency">
+                    <option value="monthly">شهري</option>
+                    <option value="weekly">أسبوعي</option>
+                    <option value="daily">يومي</option>
+                    <option value="yearly">سنوي</option>
+                  </select>
+                </label>
+                <label>عدد الأقساط<input type="number" name="installmentMonths" min="1" value="1" /></label>
+                <label>تاريخ أول قسط<input type="date" name="firstInstallmentDate" /></label>
+              </div>
+              <div class="invoice-summary sale-checkout-summary" id="saleInvoiceSummary"></div>
+              <div class="actions sale-save-actions">
+                <button class="primary" type="submit" name="action" value="save">حفظ الفاتورة</button>
+                <button class="ghost" type="submit" name="action" value="save-print">حفظ وطباعة</button>
+                <button class="text-button" type="reset">تفريغ النموذج</button>
+              </div>
+              </aside>
+              <div class="installment-preview installment-schedule-panel" id="installmentPreview"></div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="view" id="invoiceArchive">
+        <header class="invoice-center-header">
+          <div>
+            <span class="eyebrow">سجل الفواتير</span>
+            <h2>الفواتير</h2>
+            <p>جميع فواتير الزبائن والموردين في سجل موحد.</p>
+          </div>
+          <div class="invoice-center-counts" id="invoiceCenterCounts"></div>
+        </header>
+
+        <div class="tabs invoice-center-tabs" id="invoiceArchiveTabs">
+          <button class="tab-button active" type="button" data-invoice-tab="allInvoicesTab">جميع الفواتير</button>
+          <button class="tab-button" type="button" data-invoice-tab="customerInvoicesTab">فواتير الزبائن</button>
+          <button class="tab-button" type="button" data-invoice-tab="salesReturnsTab">إرجاع فاتورة</button>
+          <button class="tab-button" type="button" data-invoice-tab="supplierInvoicesTab">فواتير الموردين</button>
+        </div>
+
+        <div class="invoice-archive-tab active" id="allInvoicesTab">
+          <section class="panel invoice-unified-panel">
+            <div class="panel-head">
+              <div><span class="eyebrow">السجل الموحد</span><h2>جميع الفواتير</h2></div>
+            </div>
+            <div class="report-filters unified-invoice-filters">
+              <label>بحث<input id="allInvoiceSearch" placeholder="رقم الفاتورة، الزبون، المورد أو الهاتف" /></label>
+              <label>النوع
+                <select id="allInvoiceType">
+                  <option value="all">الكل</option>
+                  <option value="customer">فواتير الزبائن</option>
+                  <option value="supplier">فواتير الموردين</option>
+                </select>
+              </label>
+              <label>الحالة
+                <select id="allInvoiceStatus">
+                  <option value="all">كل الحالات</option>
+                  <option value="paid">مسددة</option>
+                  <option value="open">عليها مبلغ متبقٍ</option>
+                  <option value="cancelled">ملغاة</option>
+                </select>
+              </label>
+              <div class="professional-date-filter" data-date-range="allInvoices">
+                <div class="date-filter-heading"><strong>نطاق التاريخ</strong><span>فلترة حسب تاريخ الفاتورة</span></div>
+                <div class="date-filter-presets">
+                  <button type="button" data-date-preset="all">الكل</button>
+                  <button type="button" data-date-preset="today">اليوم</button>
+                  <button type="button" data-date-preset="month">هذا الشهر</button>
+                  <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+                  <button type="button" data-date-preset="year">هذه السنة</button>
+                </div>
+                <div class="date-filter-range">
+                  <label>من<input type="date" data-date-from /></label>
+                  <span aria-hidden="true">←</span>
+                  <label>إلى<input type="date" data-date-to /></label>
+                </div>
+              </div>
+            </div>
+            <div class="table-wrap invoice-archive-table-wrap">
+              <table class="invoice-archive-table unified-invoice-table">
+                <thead><tr><th>الفاتورة</th><th>التصنيف</th><th>الطرف</th><th>التاريخ</th><th>الإجمالي</th><th>المتبقي</th><th>الحالة</th><th></th></tr></thead>
+                <tbody id="allInvoicesList"></tbody>
+              </table>
+            </div>
+            <div class="pagination-bar" id="allInvoicesPagination"></div>
+          </section>
+        </div>
+
+        <div class="invoice-archive-tab" id="customerInvoicesTab">
+          <section class="invoice-archive-overview" id="invoiceArchiveOverview"></section>
+          <section class="panel sales-history invoice-archive-panel">
+            <div class="panel-head">
+              <div><span class="eyebrow">فواتير الزبائن</span><h2>سجل فواتير البيع</h2></div>
+            </div>
+            <div class="report-filters invoice-archive-filters">
+              <label>بحث<input id="invoiceArchiveSearch" placeholder="رقم الفاتورة، رقم الوصل، اسم الزبون، الهاتف" /></label>
+              <label>نوع البيع
+                <select id="invoiceArchiveSaleMode">
+                  <option value="all">كل الأنواع</option>
+                  <option value="cash">نقد مباشر</option>
+                  <option value="customerDebt">دين زبون</option>
+                  <option value="installment">تقسيط</option>
+                  <option value="modon">Modon</option>
+                </select>
+              </label>
+            <label>الحالة
+              <select id="invoiceArchiveStatus">
+                  <option value="all">كل الحالات</option>
+                  <option value="active">فعالة</option>
+                  <option value="paid">مسددة</option>
+                  <option value="open">عليها باقي</option>
+                  <option value="cancelled">ملغاة</option>
+                </select>
+              </label>
+              <div class="professional-date-filter" data-date-range="customerInvoices">
+                <div class="date-filter-heading"><strong>نطاق التاريخ</strong><span>فلترة فواتير الزبائن</span></div>
+                <div class="date-filter-presets">
+                  <button type="button" data-date-preset="all">الكل</button>
+                  <button type="button" data-date-preset="today">اليوم</button>
+                  <button type="button" data-date-preset="month">هذا الشهر</button>
+                  <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+                  <button type="button" data-date-preset="year">هذه السنة</button>
+                </div>
+                <div class="date-filter-range">
+                  <label>من<input type="date" data-date-from /></label>
+                  <span aria-hidden="true">←</span>
+                  <label>إلى<input type="date" data-date-to /></label>
+                </div>
+              </div>
+            </div>
+            <div class="table-wrap invoice-archive-table-wrap">
+              <table class="invoice-archive-table">
+                <thead><tr><th>رقم الفاتورة</th><th>رقم الوصل</th><th>الموظف</th><th>الزبون</th><th>النوع</th><th>الإجمالي</th><th>المتبقي</th><th>الحالة</th><th></th></tr></thead>
+                <tbody id="salesRecentInvoices"></tbody>
+              </table>
+            </div>
+            <div class="pagination-bar" id="invoiceArchivePagination"></div>
+          </section>
+          <section class="panel invoice-preview compact-invoice-preview">
+            <div class="panel-head"><h2>تفاصيل فاتورة الزبون</h2></div>
+            <div id="invoiceDetails" class="empty">اختر فاتورة من القائمة لعرض تفاصيلها.</div>
+          </section>
+        </div>
+
+        <div class="invoice-archive-tab" id="salesReturnsTab">
+          <section class="panel sales-return-center">
+            <div class="panel-head"><div><span class="eyebrow">إرجاع المبيعات</span><h2>اختيار فاتورة للإرجاع</h2><p class="hint">اختر فاتورة زبون ثم حدد الكمية المراد إرجاعها. يمكن تنفيذ إرجاع جزئي أو كامل.</p></div></div>
+            <label class="return-center-search">بحث عن فاتورة أو زبون<input id="salesReturnSearch" placeholder="رقم الفاتورة أو اسم الزبون" /></label>
+            <div id="salesReturnInvoiceList" class="sales-return-invoice-list"></div>
+          </section>
+        </div>
+
+        <div class="invoice-archive-tab" id="supplierInvoicesTab">
+          <section class="purchase-archive-overview" id="purchaseArchiveOverview"></section>
+          <section class="panel purchase-archive-panel">
+            <div class="panel-head"><div><span class="eyebrow">فواتير الموردين</span><h2>سجل فواتير الشراء</h2></div></div>
+            <div class="report-filters purchase-archive-filters">
+              <label>بحث<input id="purchaseInvoiceSearch" placeholder="رقم فاتورة، رقم المورد، اسم مورد، منتج" /></label>
+              <label>المورد<select id="purchaseInvoiceSupplierFilter"></select></label>
+              <label>الحالة
+                <select id="purchaseInvoiceStatusFilter">
+                  <option value="all">كل الحالات</option>
+                  <option value="active">فعالة</option>
+                  <option value="paid">مسددة</option>
+                  <option value="open">متبقي للمورد</option>
+                  <option value="cancelled">ملغاة</option>
+                </select>
+              </label>
+              <div class="professional-date-filter" data-date-range="supplierInvoices">
+                <div class="date-filter-heading"><strong>نطاق التاريخ</strong><span>فلترة فواتير الموردين</span></div>
+                <div class="date-filter-presets">
+                  <button type="button" data-date-preset="all">الكل</button>
+                  <button type="button" data-date-preset="today">اليوم</button>
+                  <button type="button" data-date-preset="month">هذا الشهر</button>
+                  <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+                  <button type="button" data-date-preset="year">هذه السنة</button>
+                </div>
+                <div class="date-filter-range">
+                  <label>من<input type="date" data-date-from /></label>
+                  <span aria-hidden="true">←</span>
+                  <label>إلى<input type="date" data-date-to /></label>
+                </div>
+              </div>
+            </div>
+            <div id="purchaseInvoiceList" class="stack"></div>
+            <div class="pagination-bar" id="purchaseInvoicePagination"></div>
+          </section>
+          <section class="panel invoice-preview purchase-invoice-preview">
+            <div class="panel-head"><h2>تفاصيل فاتورة المورد</h2></div>
+            <div id="purchaseInvoiceDetails" class="empty">اختر فاتورة شراء لعرض تفاصيلها.</div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="orders">
+        <div class="modon-page-backbar">
+          <button class="modon-center-back" type="button" data-view-jump="modonFollow"><span aria-hidden="true">→</span> العودة إلى مركز Modon</button>
+        </div>
+        <header class="modon-suite-header">
+          <div class="modon-suite-copy"><span class="modon-suite-kicker">MODON OPERATIONS</span><h2>إنشاء طلب توصيل</h2><p>طلب واحد منظم من بيانات الزبون حتى التسعير والإرسال.</p></div>
+          <div class="modon-suite-state"><span class="modon-state-dot"></span><div><small>آخر مزامنة</small><strong data-modon-sync-time>بانتظار التحديث</strong></div></div>
+        </header>
+        <form class="form modon-order-workspace" id="modonOrderForm">
+          <main class="modon-order-main">
+            <section class="panel modon-form-section">
+              <div class="modon-form-section-head">
+                <span class="modon-step-number">01</span>
+                <div><h2 id="modonOrderFormTitle">الزبون والوجهة</h2><p id="modonOrderFormHint">المعلومات الأساسية التي يعتمد عليها المندوب في الوصول والتواصل.</p></div>
+                <button class="ghost hidden" type="button" id="cancelModonOrderEdit">رجوع لإنشاء طلب جديد</button>
+              </div>
+              <div class="modon-form-grid">
+                <label>حساب Modon<select name="employeeId" id="modonEmployee"></select></label>
+                <label>اسم الزبون<input name="customerName" required placeholder="اسم الزبون الكامل" /></label>
+                <label>هاتف الزبون<input name="customerPhone" required inputmode="tel" maxlength="11" placeholder="0770 000 0000" /></label>
+                <label class="search-combo">المحافظة
+                  <input type="search" id="citySearch" placeholder="اكتب اسم المحافظة" autocomplete="off" />
+                  <input type="hidden" name="cityId" id="citySelect" />
+                  <div class="suggestions" id="citySuggestions"></div>
+                </label>
+                <label class="search-combo">المنطقة
+                  <input type="search" id="regionSearch" placeholder="اكتب اسم المنطقة" autocomplete="off" />
+                  <input type="hidden" name="regionId" id="regionSelect" />
+                  <div class="suggestions" id="regionSuggestions"></div>
+                </label>
+                <label class="wide">العنوان التفصيلي<input name="address" id="deliveryAddress" value="" placeholder="أقرب نقطة دالة، الشارع، الفرع أو المحلة" /></label>
+              </div>
+            </section>
+
+            <section class="panel modon-form-section">
+              <div class="modon-form-section-head"><span class="modon-step-number">02</span><div><h2>المنتجات داخل الطلب</h2><p>اختر المنتجات والكميات والسعر الذي سيظهر في طلب Modon.</p></div></div>
+              <label class="search-combo modon-product-picker">إضافة منتج
+                <input type="search" id="modonProductSearch" placeholder="ابحث باسم المنتج ثم اختره" autocomplete="off" />
+                <div class="suggestions" id="modonProductSuggestions"></div>
+              </label>
+              <div class="table-wrap modon-order-lines-wrap">
+                <table class="modon-order-lines-table">
+                  <thead><tr><th>المنتج</th><th>نوع السعر</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th><th></th></tr></thead>
+                  <tbody id="modonOrderLines"></tbody>
+                </table>
+                <div class="modon-lines-empty" id="modonOrderLinesEmpty"><strong>الطلب بلا منتجات</strong><span>ابحث عن أول منتج وأضفه إلى الطلب.</span></div>
+              </div>
+            </section>
+
+            <section class="panel modon-form-section">
+              <div class="modon-form-section-head"><span class="modon-step-number">03</span><div><h2>تفاصيل الشحنة</h2><p>معلومات الطرد التي تساعد Modon على المناولة والتسليم الصحيح.</p></div></div>
+              <div class="modon-form-grid">
+                <label>نوع البضاعة<input name="goodsType" placeholder="مفروشات، أثاث، إكسسوارات..." /></label>
+                <label>حجم الطرد<select name="packageSizeId" id="packageSelect"></select></label>
+                <label>نوع الطلب
+                  <select name="isExchange"><option value="0">توصيل عادي</option><option value="1">استبدال</option></select>
+                </label>
+                <label class="wide">ملاحظات للمندوب<input name="notes" placeholder="وقت مناسب للاتصال أو ملاحظة مهمة عن التسليم" /></label>
+              </div>
+            </section>
+          </main>
+
+          <aside class="panel modon-order-checkout">
+            <div class="modon-checkout-head"><span class="eyebrow">ملخص الطلب</span><h2>التسعير والإرسال</h2><p>راجع المبلغ الذي يُجبى من الزبون وصافي حسابك قبل الإرسال.</p></div>
+            <div class="modon-checkout-fields">
+              <label>مبلغ المنتجات<input type="number" name="salePrice" min="0" value="0" /></label>
+              <label>أجرة التوصيل<input type="number" name="deliveryPrice" min="0" value="4000" /></label>
+              <label class="modon-free-delivery"><input type="checkbox" name="freeDelivery" value="1" /><span><strong>التوصيل على التاجر</strong><small>لا تضاف الأجرة على الزبون</small></span></label>
+            </div>
+            <div class="invoice-summary modon-order-summary" id="modonOrderSummary"></div>
+            <div class="form-notice hidden" id="modonOrderFormNotice"></div>
+            <button class="primary modon-submit-order" type="submit" id="modonOrderSubmitButton">حفظ وإرسال الطلب إلى Modon</button>
+            <small class="modon-submit-note">لن يُخصم المخزون نهائيًا قبل نجاح إنشاء الطلب وحفظه.</small>
+          </aside>
+        </form>
+      </section>
+
+      <section class="view" id="modonToday">
+        <header class="modon-suite-header">
+          <div class="modon-suite-copy"><span class="modon-suite-kicker">ORDERS REPORT</span><h2>كشوف طلبات Modon</h2><p>اعرض واطبع الطلبات يوميًا أو شهريًا أو ضمن نطاق مخصص.</p></div>
+          <div class="modon-suite-state"><span class="modon-state-dot"></span><div><small>آخر مزامنة</small><strong data-modon-sync-time>بانتظار التحديث</strong></div></div>
+        </header>
+        <section class="panel modon-daily-panel modon-suite-panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">قائمة التجهيز</span>
+              <h2>طلبات Modon ضمن الفترة المحددة</h2>
+              <span class="hint">جميع حالات الطلبات ضمن النطاق المختار، مع كشف إداري مستقل ووصول رسمية منفصلة.</span>
+            </div>
+            <div class="inline-actions">
+              <button class="primary" type="button" id="printModonOrdersReport">طباعة كشف الفترة</button>
+              <button class="ghost" type="button" onclick="printUnprintedModonOrders()">طباعة وصول غير المطبوعة</button>
+              <button class="ghost" type="button" data-view-jump="orders">طلب Modon جديد</button>
+            </div>
+          </div>
+          <div class="professional-date-filter modon-orders-date-filter" data-date-range="modonOrdersPrint">
+            <div class="date-filter-heading"><strong>فترة طلبات Modon</strong><span>اليوم أو الشهر أو نطاق مخصص</span></div>
+            <div class="date-filter-presets">
+              <button type="button" data-date-preset="today">اليوم</button>
+              <button type="button" data-date-preset="month">هذا الشهر</button>
+              <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+              <button type="button" data-date-preset="year">هذه السنة</button>
+            </div>
+            <div class="date-filter-range">
+              <label>من<input type="date" data-date-from /></label>
+              <span aria-hidden="true">←</span>
+              <label>إلى<input type="date" data-date-to /></label>
+            </div>
+          </div>
+          <div class="metrics compact-metrics" id="modonDailyMetrics"></div>
+          <div id="modonDailyOrders" class="stack"></div>
+          <div class="pagination-bar" id="modonDailyPagination"></div>
+        </section>
+      </section>
+
+      <section class="view" id="modonFollow">
+        <header class="modon-hub-header">
+          <div class="modon-hub-header-main">
+            <div class="modon-hub-brand modon-hub-heading">
+              <span class="modon-hub-logo" aria-hidden="true">▦</span>
+              <div class="modon-hub-titlewrap">
+                <h2>مركز مدن</h2>
+                <small class="modon-hub-status"><b class="modon-hub-dot" aria-hidden="true"></b><span data-modon-sync-time>بانتظار التحديث</span></small>
+              </div>
+            </div>
+            <div class="modon-hub-header-stats modon-hub-snapshot" aria-label="ملخص سجل الطلبات" hidden>
+              <div><small>السجل المحفوظ في جوري</small><strong id="modonHubArchiveCount">—</strong><span>طلبًا محميًا</span></div>
+              <div><small>ضمن الفترة الحالية</small><strong id="modonHubPeriodCount">—</strong><span>طلبًا</span></div>
+            </div>
+            <div class="modon-hub-header-controls" aria-label="نطاق مركز Modon">
+              <select id="modonHubEmployeeScope" aria-label="اختيار حساب الموظف"></select>
+              <select id="modonHubPeriodScope" aria-label="اختيار فترة العرض">
+                <option value="system">من بداية النظام</option>
+                <option value="today">اليوم</option>
+                <option value="custom">فترة مخصّصة</option>
+              </select>
+              <div class="modon-hub-custom-range" id="modonHubCustomRange" hidden>
+                <label>من<input type="date" id="modonHubCustomFrom" /></label>
+                <label>إلى<input type="date" id="modonHubCustomTo" /></label>
+              </div>
+              <button class="primary" type="button" data-view-jump="orders" hidden>إنشاء وصل</button>
+            </div>
+            <div class="modon-hub-header-actions modon-hub-sync">
+              <button class="modon-hub-refresh" type="button" id="refreshModonCenter" aria-label="تحديث بيانات مدن" title="تحديث بيانات مدن">⟳</button>
+            </div>
+          </div>
+          <div class="modon-center-progress hidden" id="modonCenterProgress" aria-live="polite">
+            <div class="modon-center-progress-head"><strong id="modonCenterProgressPercent">0%</strong><span id="modonCenterProgressStatus">جاهز للتحديث</span></div>
+            <div class="modon-center-progress-track" role="progressbar" aria-label="تقدم تحديث بيانات Modon" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="modonCenterProgressBar"></i></div>
+            <small id="modonCenterProgressDetail">سيتم فحص الحسابات والطلبات والفواتير والراجع ضمن تحديث واحد.</small>
+          </div>
+        </header>
+
+        <nav class="modon-hub-tabs" id="modonHubTabs" role="tablist" aria-label="أقسام مركز Modon">
+          <button class="active" type="button" role="tab" aria-selected="true" data-modon-hub-tab="overview">الآن</button>
+          <button type="button" role="tab" aria-selected="false" data-modon-hub-tab="orders">الطلبات الحالية</button>
+          <button type="button" role="tab" aria-selected="false" data-modon-hub-tab="audit">المطابقة</button>
+        </nav>
+
+        <section class="modon-hub-panel active" data-modon-hub-panel="overview" role="tabpanel">
+          <div class="modon-hub-panel-head modon-hub-section-head modon-now-head">
+            <div><span class="eyebrow">الآن</span><h2>ماذا تحتاج أن تنجز الآن</h2><p>رتّبناها لك بالأولوية — كل بطاقة فيها إجراء واحد واضح، اضغطها لتنهيه.</p></div>
+          </div>
+          <div id="modonNowStats" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;"></div>
+          <div id="modonNowList" class="modon-now-list" aria-live="polite"></div>
+        </section>
+
+        <section class="modon-hub-panel" data-modon-hub-panel="audit" role="tabpanel" hidden>
+          <div class="modon-hub-panel-head modon-hub-section-head">
+            <div><span class="eyebrow">المطابقة</span><h2>المطابقة مع مدن</h2><p>نتأكد أن كل طلب في نظامك موجود في مدن، وننبّهك لأي طلب حذفته مدن. الطلبات الخارجية للقراءة فقط.</p></div>
+          </div>
+          <section class="panel modon-hub-audit-summary">
+              <div class="professional-date-filter modon-reconciliation-date-filter" data-date-range="modonReconciliation">
+                <div class="date-filter-heading">
+                  <strong>فترة المطابقة</strong>
+                  <span>لا يمكن اختيار تاريخ أقدم من بداية العمل بنظام جوري: <b id="modonReconciliationStartLabel">—</b></span>
+                </div>
+                <div class="date-filter-presets">
+                  <button type="button" data-date-preset="systemStart">من بداية النظام</button>
+                  <button type="button" data-date-preset="today">اليوم</button>
+                  <button type="button" data-date-preset="month">هذا الشهر</button>
+                  <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+                  <button type="button" data-date-preset="year">هذه السنة</button>
+                </div>
+                <div class="date-filter-range">
+                  <label>من<input type="date" data-date-from /></label>
+                  <span aria-hidden="true">←</span>
+                  <label>إلى<input type="date" data-date-to /></label>
+                </div>
+              </div>
+            <div class="metrics compact-metrics modon-audit-metrics" id="modonReconciliationMetrics"></div>
+            <div id="modonReconciliationDetails" class="stack"></div>
+          </section>
+
+          <section class="panel modon-suite-panel modon-hub-external-orders">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">الحساب الحقيقي</span>
+              <h2>كل طلبات Modon</h2>
+              <span class="hint">طلبات الحساب المباشر؛ الطلبات خارج النظام تبقى للقراءة ولا تدخل المحاسبة أو المخزون.</span>
+            </div>
+          </div>
+          <div class="filters-bar modon-external-filters">
+            <label>بحث برقم الوصل
+              <input id="modonExternalSearch" placeholder="اكتب رقم وصل Modon" />
+            </label>
+            <label>الحالة
+              <select id="modonExternalStatusFilter">
+                <option value="all">كل الحالات</option>
+                <option value="delivered">واصل</option>
+                <option value="returned">راجع</option>
+                <option value="cancelled">ملغي</option>
+                <option value="with_courier">مع مندوب الاستلام</option>
+                <option value="issues">مشاكل</option>
+                <option value="other">أخرى</option>
+              </select>
+            </label>
+            <label>المصدر
+              <select id="modonExternalSourceFilter">
+                <option value="all">كل المصادر</option>
+                <option value="external">خارج النظام</option>
+                <option value="internal">داخل النظام</option>
+              </select>
+            </label>
+            <label>الحساب
+              <select id="modonExternalAccountFilter">
+                <option value="all">كل الحسابات</option>
+              </select>
+            </label>
+            <div class="professional-date-filter" data-date-range="modonExternal">
+              <div class="date-filter-heading"><strong>نطاق التاريخ</strong><span>فلترة طلبات Modon</span></div>
+              <div class="date-filter-presets">
+                <button type="button" data-date-preset="all">الكل</button>
+                <button type="button" data-date-preset="today">اليوم</button>
+                <button type="button" data-date-preset="month">هذا الشهر</button>
+                <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+                <button type="button" data-date-preset="year">هذه السنة</button>
+              </div>
+              <div class="date-filter-range">
+                <label>من<input type="date" data-date-from /></label>
+                <span aria-hidden="true">←</span>
+                <label>إلى<input type="date" data-date-to /></label>
+              </div>
+            </div>
+          </div>
+          <div class="table-wrap modon-external-table modon-hub-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>الحساب</th>
+                  <th>طلب Modon</th>
+                  <th>الزبون</th>
+                  <th>الحالة</th>
+                  <th>المصدر</th>
+                  <th>السعر</th>
+                  <th>التوصيل</th>
+                  <th>صافي التاجر</th>
+                  <th>العنوان / التاريخ</th>
+                </tr>
+              </thead>
+              <tbody id="modonExternalOrdersTable"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar" id="modonExternalPagination"></div>
+          </section>
+        </section>
+
+        <section class="modon-hub-panel" data-modon-hub-panel="orders" role="tabpanel" hidden>
+          <div class="modon-hub-panel-head modon-hub-section-head modon-now-head">
+            <div><span class="eyebrow">الطلبات الحالية</span><h2>الطلبات الحالية</h2><p>كل طلباتك النشطة وحالتها الحيّة من مدن.</p></div>
+            <button class="primary" type="button" id="printModonOrdersFromHub">🖨 طباعة كشف الطلبات</button>
+          </div>
+          <div class="modon-orders-info">
+            <span class="mo-i" aria-hidden="true">🖨</span>
+            <span>طبعت طلباً من داخل برنامج مدن؟ اضغط <b>«✓ تم التجهيز»</b> ليختفي من قائمة غير المطبوع — أو اتركه، فسيختفي وحده بمجرد أن يستلمه المندوب.</span>
+          </div>
+          <div class="modon-orders-toolbar">
+            <label class="modon-orders-search"><span aria-hidden="true">⌕</span><input id="orderSearch" type="search" placeholder="رقم Modon، الزبون، الهاتف أو المنتج" /></label>
+            <div class="modon-orders-chips" id="orderChips" aria-label="تصفية الطلبات">
+              <button type="button" class="active" data-order-chip="all">الكل</button>
+              <button type="button" data-order-chip="unprinted">غير مطبوع</button>
+              <button type="button" data-order-chip="pending">مع المندوب</button>
+              <button type="button" data-order-chip="issue">مشكلة</button>
+              <button type="button" data-order-chip="delivered">مُسلّم</button>
+              <button type="button" data-order-chip="returned">راجع</button>
+            </div>
+          </div>
+          <select id="orderStatusFilter" hidden aria-hidden="true">
+            <option value="all">كل الحالات</option>
+            <option value="unprinted">غير مطبوع</option>
+            <option value="delivered">تم التسليم</option>
+            <option value="issue">مشكلة</option>
+            <option value="returned">راجع</option>
+            <option value="return_pending">راجع بانتظار الاستلام</option>
+            <option value="return_received">راجع مستلم</option>
+            <option value="pending">غير مكتمل</option>
+          </select>
+          <div id="modonOrdersCards" class="modon-orders-cards" aria-live="polite"></div>
+          <div class="pagination-bar" id="internalOrdersPagination"></div>
+        </section>
+
+        <section class="modon-hub-panel" id="carrierInvoices" data-modon-hub-panel="collection" role="tabpanel" hidden>
+          <div class="modon-hub-panel-head modon-hub-section-head">
+            <div><span class="eyebrow">التحصيل</span><h2>فواتير الواصل والأموال المستلمة</h2><p>أكد القبض فقط بعد استلام المبلغ فعليًا؛ ولا تدخل الفواتير الخارجية إلى القاصة.</p></div>
+          </div>
+          <div class="collection-kpis" id="carrierInvoiceSummary"></div>
+          <div class="collection-attention" id="carrierInvoiceAlerts"></div>
+          <section class="panel modon-hub-collection-list">
+            <div class="panel-head collection-panel-head">
+              <div><span class="eyebrow">قائمة التحصيل</span><h2 id="carrierInvoiceListTitle">جاهز للتحصيل</h2><span class="hint" id="carrierInvoiceListHint">فواتير مرتبطة بطلبات جوري ويمكن إدخال صافيها إلى القاصة بعد الاستلام الفعلي.</span></div>
+              <button class="ghost" type="button" id="printCollectedCarrierInvoices">طباعة كشف المقبوضة</button>
+            </div>
+            <div class="collection-toolbar">
+              <div class="collection-filter-tabs" id="carrierInvoiceFilters" aria-label="تصفية فواتير التحصيل">
+                <button class="active" type="button" data-carrier-invoice-filter="ready"><span>جاهز للتحصيل</span><strong id="carrierReadyCount">0</strong></button>
+                <button type="button" data-carrier-invoice-filter="confirmed"><span>تم قبضها</span><strong id="carrierConfirmedCount">0</strong></button>
+                <button type="button" data-carrier-invoice-filter="external"><span>خارج النظام</span><strong id="carrierExternalCount">0</strong></button>
+                <button type="button" data-carrier-invoice-filter="all"><span>جميع الفواتير</span><strong id="carrierAllCount">0</strong></button>
+              </div>
+              <label class="collection-search">البحث في الفواتير<input id="carrierInvoiceSearch" type="search" placeholder="رقم الفاتورة أو حساب Modon" /></label>
+            </div>
+            <div id="carrierInvoiceList" class="stack"></div>
+            <div class="pagination-bar" id="carrierInvoicePagination"></div>
+          </section>
+        </section>
+
+        <section class="modon-hub-panel" id="modonReturns" data-modon-hub-panel="returns" role="tabpanel" hidden>
+          <div class="modon-hub-panel-head modon-hub-section-head">
+            <div><span class="eyebrow">الراجع والاستبدال</span><h2>استلام الراجع إلى المخزون</h2><p>يُعرض كل طلب مرة واحدة، ويُصنّف الاستبدال ضمن إجمالي الراجع وليس كعدد إضافي.</p></div>
+          </div>
+          <div class="metrics" id="returnInvoiceSummary"></div>
+          <div class="stack" id="returnInvoiceAlerts"></div>
+          <div class="modon-hub-returns-grid">
+            <section class="panel modon-return-scan-panel">
+              <div class="panel-head"><div><span class="eyebrow">استلام موثق</span><h3>مسح باركود أو رقم الراجع</h3><span class="hint">تحقق من الطلب أولًا ثم أكد دخول القطع فعليًا إلى المخزون.</span></div></div>
+              <label class="wide">باركود أو رقم وصل الراجع<input id="returnBarcodeInput" placeholder="امسح الباركود أو اكتب رقم Modon ثم اضغط Enter" autocomplete="off" /></label>
+              <div class="inline-actions return-scan-actions">
+                <button class="primary" type="button" id="startReturnCameraScan">مسح بالكاميرا</button>
+                <button class="ghost hidden" type="button" id="stopReturnCameraScan">إيقاف الكاميرا</button>
+              </div>
+              <div class="return-scanner hidden" id="returnScannerBox">
+                <video id="returnScannerVideo" playsinline muted aria-label="معاينة كاميرا مسح الراجع"></video>
+                <div class="scanner-frame"></div>
+                <div class="hint" id="returnScannerHint">وجّه كاميرا الهاتف نحو باركود أو QR وصل Modon.</div>
+              </div>
+              <div id="returnBarcodeResult" class="empty">جاهز لمسح الراجع.</div>
+              <div id="returnOrderPreview" class="return-preview hidden"></div>
+            </section>
+            <section class="panel modon-return-list-panel">
+              <div class="panel-head"><div><span class="eyebrow">قائمة الاستلام</span><h3>الراجع حسب حساب Modon</h3><span class="hint">الراجع المطابق قابل للاستلام، أما غير المطابق فيبقى للمراجعة دون تغيير المخزون.</span></div></div>
+              <div class="modon-orders-toolbar return-toolbar">
+                <label class="modon-orders-search return-search-box"><span aria-hidden="true">⌕</span><input id="returnSearch" type="search" placeholder="ابحث برقم الراجع، الزبون أو المنتج" /></label>
+                <div class="modon-orders-chips" id="returnFilterChips" aria-label="تصفية الراجع">
+                  <button type="button" class="active" data-return-filter="all">الكل</button>
+                  <button type="button" data-return-filter="pending">بانتظار الاستلام</button>
+                  <button type="button" data-return-filter="received">تم استلامه</button>
+                  <button type="button" data-return-filter="external">خارج النظام</button>
+                </div>
+              </div>
+              <div id="returnInvoiceList" class="stack"></div>
+              <div class="pagination-bar" id="returnInvoicePagination"></div>
+            </section>
+          </div>
+        </section>
+
+        <div class="modon-order-drawer-backdrop hidden" id="modonOrderDrawerBackdrop" aria-hidden="true"></div>
+        <aside class="modon-order-drawer" id="modonOrderDrawer" aria-hidden="true" aria-labelledby="modonOrderDrawerTitle">
+          <div class="modon-order-drawer-head">
+            <div><span class="eyebrow">ملف الطلب</span><h2 id="modonOrderDrawerTitle">تفاصيل طلب Modon</h2><p id="modonOrderDrawerSubtitle"></p></div>
+            <button class="ghost" type="button" id="closeModonOrderDrawer" aria-label="إغلاق ملف الطلب">إغلاق</button>
+          </div>
+          <div class="modon-order-drawer-body" id="modonOrderDrawerBody"></div>
+        </aside>
+
+        <nav class="modon-bottom-nav" id="modonBottomNav" aria-label="تنقّل مركز مدن">
+          <button type="button" class="active" data-modon-hub-tab="overview"><span class="mbn-i" aria-hidden="true">◉</span><span class="mbn-l">الآن</span></button>
+          <button type="button" data-modon-hub-tab="orders"><span class="mbn-i" aria-hidden="true">▦</span><span class="mbn-l">الطلبات</span></button>
+          <button type="button" class="mbn-plus" data-modon-simple-action="create" aria-label="إنشاء وصل جديد"><b aria-hidden="true">＋</b></button>
+          <button type="button" data-modon-hub-tab="audit"><span class="mbn-i" aria-hidden="true">⇄</span><span class="mbn-l">المطابقة</span></button>
+          <button type="button" data-modon-hub-tab="returns"><span class="mbn-i" aria-hidden="true">↩</span><span class="mbn-l">الرواجع</span></button>
+        </nav>
+      </section>
+
+      <section class="view" id="employees">
+        <div class="stack" id="employeeAdminPanel">
+          <section class="panel">
+            <div class="panel-head">
+              <div><h2>ملخص الموظفين اليوم</h2><span class="hint">فردي ومجموع كلي</span></div>
+              <div class="actions"><button class="primary" type="button" id="newEmployeeButton">إنشاء حساب جديد</button></div>
+            </div>
+            <div id="employeeCards" class="stack"></div>
+          </section>
+          <form class="panel form hidden" id="employeeForm">
+            <input type="hidden" name="employeeId" value="" />
+            <div class="panel-head">
+              <h2 id="employeeFormTitle">إضافة موظف وحساب Modon</h2>
+              <span class="hint">كل موظف له اسم مستخدم وبيانات دخول مستقلة في شركة مدن</span>
+            </div>
+            <div class="fields">
+              <div class="form-section wide">
+                <div class="section-title">دخول البرنامج</div>
+                <div class="fields">
+                  <label>اسم الموظف<input name="name" required placeholder="مثال: أحمد" /></label>
+                  <label>اسم مستخدم البرنامج<input name="username" required placeholder="ahmed" autocomplete="off" /></label>
+                  <label>كلمة مرور البرنامج<input name="password" autocomplete="new-password" placeholder="اكتبها عند إنشاء الحساب أو تغييرها" /></label>
+                  <label>حالة الحساب
+                    <select name="active">
+                      <option value="1">نشط</option>
+                      <option value="0">موقوف</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+              <div class="form-section wide">
+                <div class="section-title">حساب Modon الخاص بالموظف</div>
+                <div class="fields">
+                  <label>Modon username<input name="modonUsername" autocomplete="off" placeholder="يوزر حساب مدن" /></label>
+                  <label>Modon password<input name="modonToken" autocomplete="new-password" placeholder="باسورد حساب مدن" /></label>
+                </div>
+              </div>
+              <div class="form-section wide">
+                <div class="section-title">صلاحيات العمل</div>
+                <label>قالب الصلاحية
+                  <select name="role" id="permissionPreset">
+                    <option value="sales">موظف مبيعات</option>
+                    <option value="modon">موظف Modon فقط</option>
+                    <option value="accountant">محاسب</option>
+                    <option value="warehouse">مسؤول مخزون</option>
+                    <option value="manager">مدير</option>
+                  </select>
+                </label>
+              </div>
+              <div class="wide">
+                <div class="section-title">الصلاحيات التفصيلية</div>
+                <div class="permissions-grid" id="permissionChecks"></div>
+              </div>
+            </div>
+            <div class="actions">
+              <button class="primary" type="submit" id="employeeSubmitButton">حفظ الموظف</button>
+              <button class="ghost hidden" type="button" id="cancelEmployeeEdit">إلغاء التعديل</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="view" id="products">
+        <header class="product-catalog-header">
+          <div>
+            <span class="eyebrow">كتالوج المنتجات</span>
+            <h2>المنتجات والأسعار</h2>
+            <p>مرجع موحد لبيانات المنتجات وأسعارها وحالتها في المخزون.</p>
+          </div>
+          <div class="product-catalog-summary" id="productCatalogSummary"></div>
+        </header>
+
+        <section class="panel product-catalog-toolbar">
+          <div class="product-catalog-filters">
+            <label>بحث<input id="productCatalogSearch" placeholder="اسم المنتج، التصنيف أو المورد" /></label>
+            <label>التصنيف<select id="productCategoryFilter"><option value="all">كل التصنيفات</option></select></label>
+            <label>حالة المخزون
+              <select id="productStockFilter">
+                <option value="all">كل الحالات</option>
+                <option value="available">متوفر</option>
+                <option value="attention">تحتاج متابعة</option>
+                <option value="low">منخفض</option>
+                <option value="out">نافد</option>
+              </select>
+            </label>
+          </div>
+          <div class="product-catalog-actions">
+            <button class="primary" type="button" data-new-product>منتج جديد</button>
+            <button class="ghost" type="button" data-view-jump="inventory">عرض المخزون</button>
+            <button class="ghost" type="button" data-view-jump="purchaseInvoices">فاتورة شراء</button>
+          </div>
+        </section>
+
+        <div class="product-catalog-layout">
+          <section class="panel product-directory-panel">
+            <div class="panel-head"><h2>قائمة المنتجات</h2><span class="product-result-count" id="productResultCount"></span></div>
+            <div id="productList" class="product-directory-grid"></div>
+            <div class="pagination-bar" id="productCatalogPagination"></div>
+          </section>
+          <section class="panel product-profile-panel">
+            <div id="productDetails" class="empty">لا يوجد منتج محدد.</div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="inventory">
+        <header class="inventory-header">
+          <div>
+            <span class="eyebrow">المخزون</span>
+            <h2>حالة المخزون</h2>
+            <p>الرصيد الحالي، القيمة، والمنتجات التي تحتاج متابعة.</p>
+          </div>
+          <div class="inventory-summary" id="inventorySummary"></div>
+        </header>
+
+        <section class="panel inventory-command-bar">
+          <div class="tabs inventory-section-tabs" id="inventorySectionTabs">
+            <button class="tab-button active" type="button" data-inventory-section="inventoryBalanceSection">رصيد المخزون</button>
+            <button class="tab-button" type="button" data-inventory-section="inventoryMovementsSection">حركة المخزون</button>
+          </div>
+          <div class="inventory-command-actions">
+            <button class="primary" type="button" data-new-product>منتج جديد</button>
+            <button class="ghost" type="button" data-view-jump="purchaseInvoices">فاتورة شراء</button>
+            <button class="ghost inventory-opening-action" type="button" id="toggleOpeningStock">المخزون الافتتاحي</button>
+          </div>
+        </section>
+
+        <div class="inventory-section active" id="inventoryBalanceSection">
+          <section class="panel inventory-balance-panel">
+            <div class="panel-head"><div><span class="eyebrow">الأرصدة</span><h2>المنتجات في المخزون</h2></div></div>
+            <div class="filters-bar inventory-list-filters">
+              <label>بحث<input id="inventorySearch" placeholder="اسم المنتج، التصنيف أو المورد" /></label>
+              <label>الرصيد
+                <select id="inventoryStockFilter">
+                  <option value="all">كل المنتجات</option>
+                  <option value="available">متوفر</option>
+                  <option value="low">منخفض</option>
+                  <option value="out">نافد</option>
+                </select>
+              </label>
+            </div>
+            <div class="table-wrap inventory-table-wrap">
+              <table class="inventory-table">
+                <thead><tr><th>المنتج</th><th>التصنيف والمورد</th><th>الافتتاحي</th><th>الرصيد</th><th>الكلفة</th><th>سعر المفرد</th><th>سعر الجملة</th><th>قيمة الرصيد</th><th></th></tr></thead>
+                <tbody id="inventoryTable"></tbody>
+              </table>
+            </div>
+            <div class="pagination-bar" id="inventoryPagination"></div>
+          </section>
+        </div>
+
+        <div class="inventory-section" id="inventoryMovementsSection">
+          <section class="panel inventory-movements-panel">
+            <div class="panel-head"><div><span class="eyebrow">السجل</span><h2>حركة المخزون</h2></div></div>
+            <div class="filters-bar compact-list-filters">
+              <label>بحث<input id="stockMovementSearch" placeholder="منتج، سبب، فاتورة، مورد أو موظف" /></label>
+              <div class="professional-date-filter" data-date-range="stockMovements">
+                <div class="date-filter-heading"><strong>نطاق التاريخ</strong><span>فلترة حركة المخزون</span></div>
+                <div class="date-filter-presets">
+                  <button type="button" data-date-preset="all">الكل</button>
+                  <button type="button" data-date-preset="today">اليوم</button>
+                  <button type="button" data-date-preset="month">هذا الشهر</button>
+                  <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+                  <button type="button" data-date-preset="year">هذه السنة</button>
+                </div>
+                <div class="date-filter-range">
+                  <label>من<input type="date" data-date-from /></label>
+                  <span aria-hidden="true">←</span>
+                  <label>إلى<input type="date" data-date-to /></label>
+                </div>
+              </div>
+            </div>
+            <div id="stockMovements" class="inventory-movement-list"></div>
+            <div class="pagination-bar" id="stockMovementsPagination"></div>
+          </section>
+        </div>
+
+        <div class="hidden opening-stock-workspace" id="openingStockPanel">
+          <div class="opening-stock-heading">
+            <div><span class="eyebrow">رصيد البداية</span><h2>المخزون الافتتاحي</h2></div>
+            <button class="ghost" type="button" id="closeOpeningStock">إغلاق</button>
+          </div>
+          <form class="panel form opening-stock-form" id="openingStockForm">
+            <div class="panel-head"><h2>تسجيل رصيد افتتاحي</h2><span class="badge ok">قيد مخزون</span></div>
+            <div class="fields">
+              <label>تاريخ الجرد<input type="date" name="date" /></label>
+              <label class="wide">ملاحظات<input name="notes" placeholder="مثال: جرد بداية السنة" /></label>
+            </div>
+            <div class="table-wrap opening-stock-table">
+              <table>
+                <thead><tr><th>المنتج</th><th>التصنيف</th><th>الكمية</th><th>كلفة الوحدة</th><th>سعر المفرد</th><th>سعر الجملة</th><th>الإجمالي</th><th></th></tr></thead>
+                <tbody id="openingStockLines"></tbody>
+              </table>
+            </div>
+            <div class="empty" id="openingStockLinesEmpty">0 منتج. اضغط إضافة منتج واكتب الموجود في مخزنك.</div>
+            <div class="opening-stock-actions"><button class="ghost" type="button" id="addOpeningStockLine">إضافة منتج آخر</button><button class="primary" type="submit">تثبيت المخزون الافتتاحي</button></div>
+          </form>
+          <section class="panel">
+            <div class="panel-head"><h2>قيود المخزون الافتتاحي</h2><span class="hint">لا تُسجل كشراء من مورد</span></div>
+            <div class="filters-bar compact-list-filters">
+              <label>بحث<input id="openingStockSearch" placeholder="اسم المنتج، التصنيف أو الملاحظة" /></label>
+            </div>
+            <div id="openingStockList" class="stack"></div>
+            <div class="pagination-bar" id="openingStockPagination"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view purchase-page" id="purchaseInvoices">
+        <form class="purchase-workspace" id="purchaseInvoiceForm">
+          <header class="purchase-invoice-toolbar">
+            <div><span class="eyebrow">المشتريات</span><h2>فاتورة شراء جديدة</h2></div>
+          </header>
+
+          <section class="panel purchase-header-panel">
+            <div class="purchase-section-head"><div><span class="eyebrow">بيانات الفاتورة</span><h3>المورد والمرجع</h3></div></div>
+            <div class="fields purchase-header-fields">
+              <label>المورد<select name="supplierId" id="purchaseSupplier"></select></label>
+              <label>رقم فاتورة المورد<input name="supplierInvoiceNo" placeholder="مثال: SUP-1024" /></label>
+              <label>التاريخ<input type="date" name="date" /></label>
+              <label class="wide">ملاحظات<input name="notes" /></label>
+            </div>
+          </section>
+
+          <section class="panel purchase-lines-panel">
+            <div class="purchase-section-head"><div><span class="eyebrow">محتوى الفاتورة</span><h3>المنتجات والكميات</h3></div></div>
+            <div class="purchase-lines">
+              <div class="product-picker search-combo purchase-product-picker">
+                <label>إضافة منتج<input id="purchaseProductSearch" autocomplete="off" placeholder="ابحث باسم المنتج أو التصنيف" /></label>
+                <div class="suggestions" id="purchaseProductSuggestions"></div>
+              </div>
+              <div class="table-wrap purchase-lines-table">
+                <table>
+                  <thead><tr><th>المنتج</th><th>التصنيف</th><th>الكمية</th><th>كلفة الوحدة</th><th>سعر المفرد</th><th>سعر الجملة</th></tr></thead>
+                  <tbody id="purchaseLines"></tbody>
+                </table>
+              </div>
+              <div class="empty purchase-lines-empty" id="purchaseLinesEmpty">لا توجد منتجات في الفاتورة.</div>
+              <div class="actions purchase-line-actions"><button class="ghost" type="button" id="addPurchaseLine">إضافة منتج جديد</button></div>
+            </div>
+          </section>
+
+          <section class="panel purchase-settlement-panel">
+            <div class="purchase-section-head"><div><span class="eyebrow">الحساب</span><h3>التسديد والحفظ</h3></div></div>
+            <div class="purchase-settlement-fields">
+              <label>خصم الفاتورة<input type="number" name="discount" min="0" value="0" /></label>
+              <label>مدفوع عند الشراء<input type="number" name="paidAmount" min="0" value="0" /></label>
+            </div>
+            <div class="invoice-summary purchase-summary" id="purchaseSummary"></div>
+            <div class="actions purchase-save-actions"><button class="primary" type="submit">حفظ فاتورة الشراء</button></div>
+          </section>
+        </form>
+      </section>
+
+      <section class="view" id="suppliers">
+        <section class="supplier-overview" id="supplierOverview"></section>
+        <div class="tabs" id="supplierTabs">
+          <button class="tab-button active" type="button" data-supplier-tab="supplierDirectory">الموردون</button>
+          <button class="tab-button" type="button" data-supplier-tab="supplierCreate">إضافة مورد</button>
+          <button class="tab-button" type="button" data-supplier-tab="supplierLedgerTab">كشف الحساب</button>
+        </div>
+
+        <div class="supplier-tab active" id="supplierDirectory">
+          <section class="panel">
+            <div class="panel-head"><h2>الموردون</h2><span class="hint">اختر المورد لفتح كشف حسابه</span></div>
+            <div id="supplierList" class="supplier-directory-grid"></div>
+          </section>
+        </div>
+
+        <div class="supplier-tab" id="supplierCreate">
+          <form class="panel form" id="supplierForm">
+            <div class="panel-head"><h2>إضافة مورد</h2><span class="hint">يرتبط بإدخالات المخزون والمشتريات</span></div>
+            <div class="fields">
+              <label>اسم المورد<input name="name" required /></label>
+              <label>الهاتف<input name="phone" /></label>
+              <label>العنوان<input name="address" /></label>
+              <label>رصيد افتتاحي علينا له<input type="number" name="openingPayable" value="0" /></label>
+              <label>رصيد افتتاحي لنا عليه<input type="number" name="openingReceivable" value="0" /></label>
+              <label class="wide">ملاحظات<input name="notes" /></label>
+            </div>
+            <div class="actions"><button class="primary" type="submit">حفظ المورد</button></div>
+          </form>
+        </div>
+
+        <div class="supplier-tab" id="supplierLedgerTab">
+          <section class="panel">
+            <div class="supplier-ledger-header" id="supplierLedgerHeader"></div>
+            <div id="supplierLedger" class="supplier-ledger"></div>
+          </section>
+        </div>
+
+        <div class="modal-layer hidden" id="supplierPaymentModal" aria-hidden="true">
+          <form class="modal-card form supplier-payment-modal" id="supplierPaymentForm">
+            <div class="panel-head">
+              <div><span class="eyebrow">حركة حساب المورد</span><h2 id="supplierPaymentModalTitle">تسديد المورد</h2></div>
+              <button class="icon-button" type="button" id="closeSupplierPaymentModal" title="إغلاق">×</button>
+            </div>
+            <div class="supplier-payment-balance" id="supplierPaymentBalance"></div>
+            <div class="fields">
+              <label>المورد<select name="supplierId" id="paymentSupplier"></select></label>
+              <label>نوع الحركة
+                <select name="type" id="supplierPaymentType">
+                  <option value="pay">دفع للمورد من القاصة</option>
+                  <option value="receive">قبض أو مرتجع من المورد</option>
+                </select>
+              </label>
+              <label>المبلغ<input type="number" name="amount" min="1" required /></label>
+              <label>المرجع<input name="reference" placeholder="رقم وصل أو ملاحظة" /></label>
+            </div>
+            <div class="actions">
+              <button class="ghost" type="button" id="cancelSupplierPaymentModal">إلغاء</button>
+              <button class="primary" type="submit">تأكيد الحركة</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="view" id="vouchers">
+        <header class="voucher-center-header">
+          <div>
+            <span class="eyebrow">الحركات النقدية</span>
+            <h2>مركز السندات</h2>
+            <p>سندات القبض والدفع والصرف في سجل مالي واحد.</p>
+          </div>
+          <div class="voucher-center-summary" id="voucherCenterSummary"></div>
+        </header>
+
+        <div class="tabs voucher-center-tabs" id="voucherCenterTabs">
+          <button class="tab-button active" type="button" data-voucher-tab="voucherArchiveTab">جميع السندات</button>
+          <button class="tab-button" type="button" data-voucher-tab="voucherCreateTab">إنشاء سند</button>
+          <button class="tab-button" type="button" data-voucher-tab="personalCashTab">ديون الزبائن اليدوية</button>
+        </div>
+
+        <div class="voucher-tab active" id="voucherArchiveTab">
+          <section class="panel voucher-archive-panel">
+            <div class="panel-head"><div><span class="eyebrow">السجل المالي</span><h2>جميع السندات</h2></div><span class="voucher-result-count" id="voucherResultCount"></span></div>
+            <div class="report-filters voucher-filters">
+              <label>بحث<input id="voucherSearch" placeholder="رقم السند، الطرف، المرجع أو الملاحظات" /></label>
+              <label>نوع السند
+                <select id="voucherTypeFilter">
+                  <option value="all">كل الأنواع</option>
+                  <option value="receipt">سند قبض</option>
+                  <option value="payment">سند دفع</option>
+                  <option value="expense">سند صرف</option>
+                </select>
+              </label>
+              <label>الحالة
+                <select id="voucherStatusFilter">
+                  <option value="all">كل الحالات</option>
+                  <option value="active">فعال</option>
+                  <option value="cancelled">ملغى</option>
+                </select>
+              </label>
+              <div class="professional-date-filter" data-date-range="vouchers">
+                <div class="date-filter-heading"><strong>نطاق التاريخ</strong><span>فلترة السندات</span></div>
+                <div class="date-filter-presets">
+                  <button type="button" data-date-preset="all">الكل</button>
+                  <button type="button" data-date-preset="today">اليوم</button>
+                  <button type="button" data-date-preset="month">هذا الشهر</button>
+                  <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+                  <button type="button" data-date-preset="year">هذه السنة</button>
+                </div>
+                <div class="date-filter-range">
+                  <label>من<input type="date" data-date-from /></label>
+                  <span aria-hidden="true">←</span>
+                  <label>إلى<input type="date" data-date-to /></label>
+                </div>
+              </div>
+            </div>
+            <div class="table-wrap voucher-table-wrap">
+              <table class="voucher-table">
+                <thead><tr><th>السند</th><th>النوع</th><th>الطرف</th><th>التاريخ</th><th>الاتجاه</th><th>المبلغ</th><th>الحالة</th><th></th></tr></thead>
+                <tbody class="voucher-list" id="voucherArchiveList" data-voucher-list=""></tbody>
+              </table>
+            </div>
+            <div class="pagination-bar" id="voucherPagination"></div>
+          </section>
+        </div>
+
+        <div class="voucher-tab" id="voucherCreateTab">
+          <form class="panel form voucher-create-form voucher-form" id="voucherCreateForm" data-voucher-type="receipt">
+            <div class="voucher-create-header">
+              <div><span class="eyebrow">سند جديد</span><h2 id="voucherCreateTitle">سند قبض</h2><p id="voucherCreateEffect">مبلغ داخل إلى القاصة.</p></div>
+              <div class="voucher-type-selector" id="voucherTypeSelector">
+                <button class="voucher-type-option receipt active" type="button" data-create-voucher="receipt"><span>قبض</span><small>مبلغ داخل</small></button>
+                <button class="voucher-type-option payment" type="button" data-create-voucher="payment"><span>دفع</span><small>مبلغ خارج</small></button>
+                <button class="voucher-type-option expense" type="button" data-create-voucher="expense"><span>صرف</span><small>مصروف إداري</small></button>
+              </div>
+            </div>
+            <input type="hidden" name="type" value="receipt" />
+            <input type="hidden" name="accountKind" value="general" />
+            <input type="hidden" name="accountId" value="" />
+            <input type="hidden" name="settlementType" value="" />
+            <input type="hidden" name="settlementInvoiceId" value="" />
+            <input type="hidden" name="settlementInstallmentIndex" value="" />
+            <section class="voucher-account-link" id="voucherAccountLink">
+              <div class="voucher-account-link-head">
+                <div><span class="eyebrow">ربط السند</span><h3>الحساب المرتبط</h3></div>
+                <div class="voucher-party-kind-selector" id="voucherPartyKindSelector">
+                  <button class="active" type="button" data-voucher-party-kind="general">سند عام</button>
+                  <button type="button" data-voucher-party-kind="customer">زبون</button>
+                  <button type="button" data-voucher-party-kind="supplier">مورد</button>
+                </div>
+              </div>
+              <div class="voucher-account-picker hidden" id="voucherAccountPicker">
+                <div class="search-combo voucher-account-search">
+                  <label><span id="voucherAccountSelectLabel">اختر الحساب</span>
+                    <input type="search" id="voucherAccountSearch" autocomplete="off" placeholder="ابحث بالاسم أو الهاتف" />
+                  </label>
+                  <select class="hidden" id="voucherAccountSelect" tabindex="-1" aria-hidden="true"><option value="">اختر من القائمة</option></select>
+                  <div class="suggestions voucher-account-suggestions" id="voucherAccountSuggestions"></div>
+                </div>
+              </div>
+              <div class="voucher-account-details hidden" id="voucherAccountDetails"></div>
+            </section>
+            <div class="voucher-form-grid">
+              <label>المبلغ<input type="number" name="amount" min="1" required inputmode="numeric" /></label>
+              <label><span id="voucherPartyLabel">الطرف</span><input name="party" placeholder="اسم الشخص أو الجهة" /></label>
+              <label>المرجع<input name="reference" placeholder="رقم وصل أو مرجع" /></label>
+              <label class="wide">البيان<input name="notes" placeholder="تفاصيل السند" /></label>
+            </div>
+            <div class="voucher-create-footer">
+              <div class="voucher-effect-preview" id="voucherEffectPreview"></div>
+              <button class="primary" type="submit" id="voucherSubmitButton">حفظ سند القبض</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="voucher-tab" id="personalCashTab">
+          <div class="personal-cash-workspace">
+            <form class="panel form personal-cash-form" id="personalDebtForm">
+              <div class="panel-head"><div><span class="eyebrow">دين يدوي</span><h2>إضافة دين على زبون</h2><span class="hint">اختر زبونًا أو اكتب اسمًا جديدًا لإنشاء ملفه تلقائيًا.</span></div></div>
+              <div class="fields">
+                <label class="search-combo wide">الزبون
+                  <input type="search" name="customerName" id="personalDebtCustomerSearch" required autocomplete="off" placeholder="ابحث أو اكتب اسم زبون جديد" />
+                  <input type="hidden" name="customerPhone" id="personalDebtCustomerPhone" />
+                  <div class="suggestions" id="personalDebtCustomerSuggestions"></div>
+                </label>
+                <label>هاتف الزبون (اختياري)<input name="customerPhoneInput" id="personalDebtCustomerPhoneInput" inputmode="tel" placeholder="0770 000 0000" /></label>
+                <label>المبلغ<input type="number" name="amount" min="1" required /></label>
+                <label>مصدر الدين
+                  <select name="fundingSource" id="personalDebtFundingSource">
+                    <option value="cash">من القاصة — يخصم الآن</option>
+                    <option value="external">خارج القاصة — لا يخصم الآن</option>
+                  </select>
+                </label>
+                <label class="wide">السبب أو البيان<input name="reason" placeholder="سلفة، مبلغ شخصي، سبب الدين..." /></label>
+              </div>
+              <div class="manual-debt-effect" id="personalDebtEffect"><strong>الأثر المحاسبي</strong><span>سيُنقص المبلغ من القاصة الآن، وعند السداد يعود إلى القاصة.</span></div>
+              <div class="actions"><button class="primary" type="submit">حفظ دين الزبون</button></div>
+            </form>
+            <section class="panel personal-cash-records">
+              <div class="panel-head"><div><span class="eyebrow">السجل</span><h2>ديون الزبائن اليدوية</h2></div></div>
+              <div id="personalDebtList" class="finance-record-list"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="accounts">
+        <header class="modon-suite-header">
+          <div class="modon-suite-copy"><span class="modon-suite-kicker">DELIVERY ACCOUNT</span><h2>حساب شركة التوصيل</h2><p>الصافي والمستحقات والقيود الناتجة من دورة طلبات Modon.</p></div>
+          <div class="modon-suite-state"><span class="modon-state-dot"></span><div><small>آخر مزامنة</small><strong data-modon-sync-time>بانتظار التحديث</strong></div></div>
+        </header>
+        <section class="modon-account-overview"><div class="metrics" id="deliveryMetrics"></div></section>
+        <section class="panel modon-suite-panel">
+          <div class="panel-head"><div><span class="eyebrow">القيود</span><h2>الحركة المحاسبية</h2></div><span class="hint">حسب الحساب المحدد أو مجموع الشركة</span></div>
+          <div class="ledger" id="accountingEntries"></div>
+        </section>
+      </section>
+
+      <section class="view finance-page" id="customers">
+        <section class="customer-accounts-overview" id="customerAccountsOverview"></section>
+        <div class="customer-accounts-workspace">
+          <aside class="panel customer-list-panel">
+            <div class="customer-list-head">
+              <div>
+                <span class="finance-kicker">دليل الحسابات</span>
+                <h2>الزبائن</h2>
+              </div>
+              <span class="hint">اختر زبونًا لفتح كشف حسابه</span>
+            </div>
+            <label class="customer-search-field">البحث
+              <input id="customerSearch" type="search" placeholder="الاسم أو رقم الهاتف" />
+            </label>
+            <div class="customer-directory-filters" id="customerDirectoryFilters" aria-label="تصفية حسابات الزبائن">
+              <button class="active" type="button" data-customer-directory-filter="all"><span>الكل</span><strong id="customerFilterAllCount">0</strong></button>
+              <button type="button" data-customer-directory-filter="owes"><span>نطلبه</span><strong id="customerFilterOwesCount">0</strong></button>
+              <button type="button" data-customer-directory-filter="debt"><span>دين</span><strong id="customerFilterDebtCount">0</strong></button>
+              <button type="button" data-customer-directory-filter="installment"><span>أقساط</span><strong id="customerFilterInstallmentCount">0</strong></button>
+              <button type="button" data-customer-directory-filter="overdue"><span>متأخر</span><strong id="customerFilterOverdueCount">0</strong></button>
+              <button type="button" data-customer-directory-filter="settled"><span>مسدد</span><strong id="customerFilterSettledCount">0</strong></button>
+            </div>
+            <div id="customerDirectoryList" class="customer-directory-list"></div>
+          </aside>
+          <section class="customer-account-detail" id="customerHistory">
+            <div class="customer-detail-empty">
+              <strong>اختر زبونًا من القائمة</strong>
+              <span>سيظهر هنا الملخص، كشف الحساب، الفواتير، الأقساط والدفعات.</span>
+            </div>
+          </section>
+        </div>
+        <div class="modal-layer hidden" id="customerPaymentModal" aria-hidden="true">
+          <form class="modal-card form customer-payment-modal" id="debtPaymentForm">
+            <div class="panel-head">
+              <div>
+                <span class="finance-kicker">حركة مالية</span>
+                <h2>تسجيل قبض من زبون</h2>
+                <span class="hint">اختر الحساب أو الفاتورة وسيظهر الرصيد قبل وبعد القبض</span>
+              </div>
+              <button class="icon-button" type="button" id="closeCustomerPayment" title="إغلاق">×</button>
+            </div>
+            <div class="customer-payment-balance" id="customerPaymentBalance"></div>
+            <div class="fields">
+              <label class="search-combo wide">الزبون
+                <input type="search" id="debtCustomerSearch" placeholder="ابحث باسم الزبون" autocomplete="off" />
+                <input type="hidden" name="customerPhone" id="debtCustomerPhone" />
+                <input type="hidden" name="invoiceId" id="debtInvoiceId" />
+                <input type="hidden" name="personalDebtId" id="debtPersonalDebtId" />
+                <input type="hidden" name="paymentType" id="debtPaymentType" value="general" />
+                <input type="hidden" name="installmentIndex" id="debtInstallmentIndex" />
+                <div class="suggestions" id="debtCustomerSuggestions"></div>
+              </label>
+              <label>مبلغ القبض<input type="number" name="amount" min="1" required /></label>
+              <label>وجهة التسديد<input id="debtPaymentTarget" readonly value="دفعة عامة على الزبون" /></label>
+            </div>
+            <div class="actions">
+              <button class="ghost" type="button" id="cancelCustomerPayment">إلغاء</button>
+              <button class="primary" type="submit">تأكيد تسجيل القبض</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="view" id="reports">
+        <header class="reports-center-header">
+          <div><span class="eyebrow">التحليل المالي</span><h2>التقارير</h2><p>اختر النطاق ثم افتح تفاصيل أي مؤشر من بطاقته.</p></div>
+          <div class="reports-header-actions">
+            <button class="ghost" id="exportCsv">تصدير CSV</button>
+            <button class="primary" id="printReport">طباعة التقرير الحالي / PDF</button>
+          </div>
+        </header>
+        <section class="panel report-toolbar">
+          <div class="panel-head">
+            <div><span class="eyebrow">نطاق التقرير</span><h2>الفلاتر</h2></div>
+          </div>
+          <div class="report-filters">
+            <div class="professional-date-filter report-date-filter" data-date-range="reports">
+              <div class="date-filter-heading"><strong>نطاق التقرير</strong><span>اختر فترة جاهزة أو حدّد من وإلى</span></div>
+              <div class="date-filter-presets">
+                <button type="button" data-date-preset="today">اليوم</button>
+                <button type="button" data-date-preset="month">هذا الشهر</button>
+                <button type="button" data-date-preset="last30">آخر 30 يوم</button>
+                <button type="button" data-date-preset="year">هذه السنة</button>
+              </div>
+              <div class="date-filter-range">
+                <label>من<input type="date" data-date-from /></label>
+                <span aria-hidden="true">←</span>
+                <label>إلى<input type="date" data-date-to /></label>
+              </div>
+            </div>
+            <label>التقرير عن<select id="reportEmployeeScope"></select></label>
+            <label>نوع العملية
+              <select id="reportOperationScope">
+                <option value="all">كل العمليات</option>
+                <option value="sales">المبيعات فقط</option>
+                <option value="modon">طلبات Modon فقط</option>
+                <option value="cash">حركة القاصة فقط</option>
+              </select>
+            </label>
+            <label>طريقة البيع
+              <select id="reportSaleModeScope">
+                <option value="all">كل طرق البيع</option>
+                <option value="cash">نقد مباشر</option>
+                <option value="customerDebt">دين زبون</option>
+                <option value="installment">تقسيط</option>
+                <option value="modon">Modon</option>
+              </select>
+            </label>
+          </div>
+          <div class="tabs report-tabs" id="reportTabs">
+            <button class="tab-button active" type="button" data-report-tab="reportSummaryTab">ملخص الشركة</button>
+            <button class="tab-button profit-only" type="button" data-report-tab="reportProfitsTab">الأرباح</button>
+            <button class="tab-button" type="button" data-report-tab="reportEmployeesTab">الموظفين</button>
+            <button class="tab-button" type="button" data-report-tab="reportModonTab">Modon</button>
+            <button class="tab-button" type="button" data-report-tab="reportCashTab">القاصة والسندات</button>
+            <button class="tab-button" type="button" data-report-tab="reportStockTab">المخزون والراجع</button>
+            <button class="tab-button" type="button" data-report-tab="reportDebtTab">الديون والأقساط</button>
+            <button class="tab-button" type="button" data-report-tab="reportAuditTab">سجل المراجعة</button>
+          </div>
+        </section>
+        <section class="panel report-tab-panel active" id="reportSummaryTab">
+          <div class="panel-head">
+            <h2>تقرير اليوم</h2>
+            <span class="hint">مؤشرات مختصرة حسب الفلاتر المحددة</span>
+          </div>
+          <div class="metrics report-metrics" id="dailyReportMetrics"></div>
+          <div id="dailyReport" class="report compact-report"></div>
+        </section>
+        <section class="panel report-tab-panel profit-only" id="reportProfitsTab">
+          <div class="panel-head">
+            <div><span class="eyebrow">التحليل المالي</span><h2>الأرباح</h2></div>
+            <span class="hint">إجمالي الربح وما تم قبضه وما بقي ضمن الذمم المفتوحة</span>
+          </div>
+          <div class="metrics" id="financialMetrics"></div>
+          <section class="profit-detail-center profit-only">
+            <div class="profit-detail-head">
+              <div>
+                <span class="eyebrow">تفاصيل الأرباح</span>
+                <h3 id="profitDetailTitle">الفواتير المكوِّنة لإجمالي الربح</h3>
+              </div>
+              <div class="profit-detail-filters" id="profitDetailFilters">
+                <button class="active" type="button" data-profit-filter="total">إجمالي الربح</button>
+                <button type="button" data-profit-filter="collected">المقبوض</button>
+                <button type="button" data-profit-filter="uncollected">غير المقبوض</button>
+              </div>
+            </div>
+            <div class="profit-detail-summary" id="profitDetailSummary"></div>
+            <div class="table-wrap profit-detail-table-wrap">
+              <table class="profit-detail-table">
+                <thead>
+                  <tr>
+                    <th>الفاتورة</th>
+                    <th>الزبون</th>
+                    <th>البيع</th>
+                    <th>الكلفة</th>
+                    <th>إجمالي الربح</th>
+                    <th>المقبوض</th>
+                    <th>غير المقبوض</th>
+                  </tr>
+                </thead>
+                <tbody id="profitDetailsBody"></tbody>
+              </table>
+            </div>
+          </section>
+          <div class="section-title">التفاصيل المالية</div>
+          <div id="financialReport" class="report compact-report"></div>
+        </section>
+        <section class="panel report-tab-panel" id="reportModonTab">
+          <div class="panel-head">
+            <h2>تقرير Modon والمطابقة</h2>
+            <span class="hint">يفصل طلبات النظام المحاسبية عن طلبات Modon الخارجية للقراءة فقط</span>
+          </div>
+          <div class="metrics report-metrics" id="modonReportMetrics"></div>
+          <div id="modonReport" class="stack"></div>
+        </section>
+        <section class="panel report-tab-panel" id="reportEmployeesTab">
+          <div class="panel-head"><h2>تقرير الموظفين</h2><span class="hint">موظف محدد أو مجموع الشركة بالكامل</span></div>
+          <div id="employeeReport" class="stack"></div>
+        </section>
+        <section class="panel report-tab-panel" id="reportCashTab">
+          <div class="panel-head"><h2>القاصة والسندات</h2><span class="hint">حركة النقد وسندات القبض والدفع والصرف بدون خلطها مع الأرباح</span></div>
+          <div class="metrics report-metrics" id="cashReportMetrics"></div>
+          <div id="cashReport" class="report compact-report"></div>
+        </section>
+        <section class="panel report-tab-panel" id="reportStockTab">
+          <div class="panel-head"><h2>المخزون والراجع</h2><span class="hint">قيمة المخزون والقطع الراجعة المستلمة أو المنتظرة</span></div>
+          <div class="metrics report-metrics" id="stockReportMetrics"></div>
+          <div id="stockReport" class="report compact-report"></div>
+        </section>
+        <section class="panel report-tab-panel" id="reportDebtTab">
+          <div class="panel-head"><h2>الديون والأقساط</h2><span class="hint">ذمم الزبائن والأقساط المفتوحة والديون الشخصية</span></div>
+          <div class="metrics report-metrics" id="debtReportMetrics"></div>
+          <div id="debtReport" class="report compact-report"></div>
+        </section>
+        <section class="panel report-tab-panel" id="reportAuditTab">
+          <div class="panel-head"><h2>سجل المراجعة</h2><span class="hint">آخر الحركات الحساسة: إنشاء، تعديل، إلغاء، قبض، دفع</span></div>
+          <div id="auditLog" class="ledger"></div>
+        </section>
+      </section>
+
+      <section class="view" id="settings">
+        <form class="panel form" id="companySettingsForm">
+          <div class="panel-head">
+            <div>
+              <h2>بيانات الشركة والطباعة</h2>
+              <span class="hint">تظهر في رأس كل فاتورة وسند وكشف حساب</span>
+            </div>
+          </div>
+          <div class="fields">
+            <label>اسم الشركة<input name="name" placeholder="مفروشات جوري" /></label>
+            <label>الهاتف<input name="phone" placeholder="+964..." /></label>
+            <label>العنوان<input name="address" placeholder="بغداد - ..." /></label>
+            <label>الرقم الضريبي أو التعريفي<input name="taxNo" placeholder="اختياري" /></label>
+            <label>شعار الشركة<input type="file" id="companyLogoInput" name="logoFile" accept="image/*" /></label>
+            <div class="logo-preview-box">
+              <span>الشعار الحالي</span>
+              <img id="companyLogoPreview" alt="شعار الشركة" />
+              <button class="ghost" type="button" id="removeCompanyLogo">حذف الشعار</button>
+            </div>
+            <label class="wide">نص أسفل الفاتورة<textarea name="footer" rows="3" placeholder="شكراً لتعاملكم معنا"></textarea></label>
+          </div>
+          <div class="section-title">إعدادات Modon</div>
+          <div class="fields">
+            <label>زيادة سعر Modon لكل طلب<input type="number" name="modonPriceMarkup" min="0" value="1000" /></label>
+            <label>أجرة التوصيل الافتراضية<input type="number" name="modonDeliveryPrice" min="0" value="4000" /></label>
+          </div>
+          <div class="actions"><button class="primary" type="submit">حفظ بيانات الشركة</button></div>
+        </form>
+        <section class="panel printer-test-panel">
+          <div class="printer-test-copy">
+            <span class="eyebrow">فحص الطباعة</span>
+            <h2>اختبار الطابعة على ورق A4</h2>
+            <p>اطبع ورقة معايرة للتأكد من الهوامش، وضوح النص العربي، التدرج، والأبعاد قبل طباعة الفواتير.</p>
+            <div class="printer-test-specs">
+              <div><span>حجم الورق</span><strong>A4 — 210 × 297 ملم</strong></div>
+              <div><span>الاتجاه</span><strong>عمودي</strong></div>
+              <div><span>المقياس المقترح</span><strong>100% / الحجم الفعلي</strong></div>
+            </div>
+            <div class="printer-test-note">
+              ستفتح نافذة الطباعة الخاصة بالنظام، ومنها يمكنك اختيار أي طابعة متصلة بالجهاز.
+            </div>
+            <button class="primary printer-test-action" type="button" id="printA4TestPage">طباعة ورقة اختبار A4</button>
+          </div>
+          <div class="a4-test-preview" aria-hidden="true">
+            <div class="a4-preview-head"><span>ج</span><strong>اختبار طباعة A4</strong></div>
+            <div class="a4-preview-lines"><i></i><i></i><i></i></div>
+            <div class="a4-preview-grid"><i></i><i></i><i></i><i></i></div>
+            <div class="a4-preview-footer">210 × 297 mm</div>
+          </div>
+        </section>
+        <section class="panel print-template-test-panel">
+          <div class="panel-head print-template-test-head">
+            <div>
+              <span class="eyebrow">قوالب المستندات</span>
+              <h2>معاينة أي فاتورة أو سند قبل استخدامه</h2>
+              <span class="hint">بيانات تجريبية فقط؛ لا تُنشئ فاتورة ولا تؤثر على الحسابات أو المخزون.</span>
+            </div>
+            <div class="print-template-test-controls">
+              <label>نوع المستند
+                <select id="printTemplateTestType">
+                  <option value="sale">فاتورة بيع نقدي</option>
+                  <option value="installment">فاتورة بيع بالتقسيط</option>
+                  <option value="purchase">فاتورة شراء</option>
+                  <option value="receipt">سند قبض</option>
+                  <option value="payment">سند دفع</option>
+                  <option value="customerStatement">كشف حساب زبون</option>
+                  <option value="supplierStatement">كشف حساب مورد</option>
+                  <option value="modon">طلب Modon</option>
+                </select>
+              </label>
+              <button class="primary" type="button" id="printSelectedTemplateTest">طباعة النموذج التجريبي</button>
+            </div>
+          </div>
+          <div class="print-template-preview-stage">
+            <div class="print-document print-template-preview-document" id="printTemplateTestPreview"></div>
+          </div>
+        </section>
+        <form class="panel form hidden" id="adminSecurityForm">
+          <div class="panel-head">
+            <div>
+              <h2>أمان حساب الإدارة</h2>
+              <span class="hint">يظهر للإدارة العامة فقط. استخدم كلمة مرور طويلة وفريدة.</span>
+            </div>
+          </div>
+          <div class="fields">
+            <label>اسم دخول الإدارة<input name="username" autocomplete="username" required /></label>
+            <label>كلمة المرور الجديدة<input type="password" name="password" autocomplete="new-password" minlength="12" required /></label>
+            <label>تأكيد كلمة المرور<input type="password" name="passwordConfirm" autocomplete="new-password" minlength="12" required /></label>
+          </div>
+          <div class="actions"><button class="primary" type="submit">تحديث بيانات دخول الإدارة</button></div>
+        </form>
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>سلامة البيانات الأونلاين</h2>
+              <span class="hint">متابعة النسخة، آخر حفظ، وحجم البيانات التشغيلية</span>
+            </div>
+            <div class="inline-actions">
+              <button class="ghost" type="button" id="checkDataHealth">فحص الاتصال</button>
+              <button class="primary" type="button" id="downloadBackup">تنزيل نسخة احتياطية</button>
+            </div>
+          </div>
+          <div class="metrics" id="dataHealthMetrics"></div>
+          <div id="dataHealthDetails" class="report"></div>
+        </section>
+        <section class="panel docs">
+          <h2>ملاحظات تشغيلية</h2>
+          <ul>
+            <li>الإدارة تختار "كل الشركة" لرؤية تقارير الموظفين مجتمعة.</li>
+            <li>كل فاتورة Modon تحمل اسم الموظف وحسابه، وتظهر في تقاريره اليومية.</li>
+            <li>ديون الزبائن تبقى ذمم، والديون الشخصية تخصم من القاصة مباشرة.</li>
+            <li>في الإنتاج تحفظ بيانات Modon الخاصة بكل موظف مشفرة على الخادم.</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+
+    <template id="metricTemplate">
+      <article class="metric"><span></span><strong></strong><small></small></article>
+    </template>
+
+    <div class="print-layer" id="printLayer" aria-hidden="true">
+      <div class="print-document" id="printDocument"></div>
+    </div>
+
+    <div class="modal-layer hidden" id="modonOrdersPrintModal" aria-hidden="true">
+      <section class="modal-card" role="dialog" aria-modal="true" style="max-width:440px;">
+        <div class="panel-head"><div><h2>طباعة كشف الطلبات</h2><span class="hint">اختر الحالة والفترة قبل الطباعة</span></div></div>
+        <div style="display:flex;flex-direction:column;gap:14px;padding:4px 2px;">
+          <label>الحالة
+            <select id="modonPrintStatus">
+              <option value="all">الكل</option>
+              <option value="unprinted">غير المطبوع</option>
+              <option value="pending">مع المندوب</option>
+              <option value="issue">مشكلة</option>
+              <option value="delivered">مُسلّم</option>
+              <option value="returned">راجع</option>
+            </select>
+          </label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="ghost" type="button" onclick="setModonPrintPreset('today')">اليوم</button>
+            <button class="ghost" type="button" onclick="setModonPrintPreset('month')">آخر شهر</button>
+            <button class="ghost" type="button" onclick="setModonPrintPreset('all')">كل الفترات</button>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <label style="flex:1;">من<input type="date" id="modonPrintFrom" /></label>
+            <label style="flex:1;">إلى<input type="date" id="modonPrintTo" /></label>
+          </div>
+        </div>
+        <div class="actions" style="display:flex;gap:10px;margin-top:14px;">
+          <button class="primary" type="button" onclick="confirmModonOrdersPrint()">🖨 طباعة</button>
+          <button class="ghost" type="button" onclick="closeModonOrdersPrintDialog()">إلغاء</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-layer hidden" id="modonBucketModal" aria-hidden="true">
+      <section class="modal-card" role="dialog" aria-modal="true" style="max-width:820px;max-height:85vh;overflow:auto;">
+        <div class="panel-head"><div><h2 id="modonBucketTitle">القائمة</h2><span class="hint" id="modonBucketSubtitle"></span></div><button class="ghost" type="button" onclick="closeModonBucketModal()">إغلاق</button></div>
+        <div id="modonBucketBody"></div>
+      </section>
+    </div>
+
+    <div class="modal-layer hidden" id="auditModal" aria-hidden="true">
+      <section class="modal-card audit-modal" role="dialog" aria-modal="true" aria-labelledby="auditModalTitle">
+        <div class="panel-head">
+          <div>
+            <h2 id="auditModalTitle">تفاصيل الحركة</h2>
+            <span class="hint" id="auditModalSubtitle"></span>
+          </div>
+          <button class="ghost" type="button" id="closeAuditModal">إغلاق</button>
+        </div>
+        <div id="auditModalBody" class="audit-details"></div>
+      </section>
+    </div>
+
+    <div class="modal-layer hidden" id="carrierInvoiceModal" aria-hidden="true">
+      <section class="modal-card carrier-modal" role="dialog" aria-modal="true" aria-labelledby="carrierInvoiceModalTitle">
+        <div class="panel-head">
+          <div>
+            <h2 id="carrierInvoiceModalTitle">تفاصيل فاتورة Modon</h2>
+            <span class="hint" id="carrierInvoiceModalSubtitle"></span>
+          </div>
+          <button class="ghost" type="button" id="closeCarrierInvoiceModal">إغلاق</button>
+        </div>
+        <div id="carrierInvoiceModalBody" class="audit-details"></div>
+      </section>
+    </div>
+
+    <div class="modal-layer hidden" id="carrierCashConfirmModal" aria-hidden="true">
+      <section class="modal-card financial-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="carrierCashConfirmTitle">
+        <div class="panel-head">
+          <div>
+            <h2 id="carrierCashConfirmTitle">تأكيد قبض فاتورة Modon</h2>
+            <span class="hint">راجع المبلغ جيدًا؛ بعد التأكيد سيدخل إلى القاصة وتُغلق ذمة الطلبات المطابقة.</span>
+          </div>
+          <button class="ghost" type="button" id="closeCarrierCashConfirm">إلغاء</button>
+        </div>
+        <div id="carrierCashConfirmBody" class="audit-details"></div>
+        <div class="financial-confirm-warning">أكد فقط بعد استلام المبلغ فعليًا من شركة Modon.</div>
+        <div class="inline-actions financial-confirm-actions">
+          <button class="ghost" type="button" id="cancelCarrierCashConfirm">رجوع</button>
+          <button class="primary" type="button" id="confirmCarrierCashAction">تأكيد القبض وإدخال المبلغ للقاصة</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-layer hidden" id="stockAdjustmentModal" aria-hidden="true">
+      <form class="modal-card financial-confirm-modal form" id="stockAdjustmentForm" role="dialog" aria-modal="true" aria-labelledby="stockAdjustmentTitle">
+        <input type="hidden" name="productId" />
+        <div class="panel-head">
+          <div>
+            <h2 id="stockAdjustmentTitle">تسوية رصيد المخزون</h2>
+            <span class="hint">تُسجل التسوية كحركة مستقلة ولا تمسح تاريخ البيع والشراء.</span>
+          </div>
+          <button class="ghost" type="button" id="closeStockAdjustment">إلغاء</button>
+        </div>
+        <div class="invoice-summary">
+          <div><span>المنتج</span><strong id="stockAdjustmentProduct">-</strong></div>
+          <div><span>الرصيد الحالي</span><strong id="stockAdjustmentCurrent">0</strong></div>
+        </div>
+        <div class="fields">
+          <label>الرصيد الفعلي الصحيح<input type="number" name="actualQuantity" min="0" step="1" required /></label>
+          <label>سبب التسوية<input name="reason" maxlength="160" placeholder="مثال: خطأ إدخال أو نتيجة جرد فعلي" required /></label>
+        </div>
+        <div class="actions">
+          <button class="ghost" type="button" id="cancelStockAdjustment">رجوع</button>
+          <button class="primary" type="submit">حفظ تسوية المخزون</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-layer hidden" id="productEditModal" aria-hidden="true">
+      <form class="modal-card financial-confirm-modal form" id="productEditForm" role="dialog" aria-modal="true" aria-labelledby="productEditTitle">
+        <div class="panel-head"><div><h2 id="productEditTitle">تعديل بيانات المنتج</h2><span class="hint">تعديل الأسعار والكلفة لا يغير رصيد المخزون</span></div><button class="icon-button" type="button" id="closeProductEdit" title="إغلاق">×</button></div>
+        <input type="hidden" name="productId" />
+        <div class="fields product-edit-fields">
+          <label class="wide">اسم المنتج<input name="name" required /></label>
+          <label>التصنيف<input name="category" list="categoryOptions" /></label>
+          <label>المورد الأساسي<select name="supplierId"><option value="">بدون مورد محدد</option></select></label>
+          <div class="product-edit-pricing wide">
+            <label>كلفة الشراء<input type="number" name="cost" min="0" required /></label>
+            <label>سعر المفرد<input type="number" name="retailPrice" min="0" required /></label>
+            <label>سعر الجملة<input type="number" name="wholesalePrice" min="0" required /></label>
+          </div>
+        </div>
+        <div class="actions"><button class="ghost" type="button" id="cancelProductEdit">إلغاء</button><button class="primary" type="submit" id="productEditSubmit">حفظ التعديل</button></div>
+      </form>
+    </div>
+
+    <div class="modal-layer hidden" id="connectionRecoveryModal" aria-hidden="true">
+      <section class="modal-card connection-recovery-modal" role="dialog" aria-modal="true" aria-labelledby="connectionRecoveryTitle">
+        <div class="connection-recovery-head">
+          <div class="connection-recovery-icon" aria-hidden="true">↻</div>
+          <div>
+            <h2 id="connectionRecoveryTitle">تعذر الاتصال مؤقتًا</h2>
+            <p id="connectionRecoveryMessage">لم يرد الخادم على الطلب.</p>
+          </div>
+        </div>
+        <div class="connection-recovery-status" id="connectionRecoveryStatus" aria-live="polite"></div>
+        <div class="connection-checks">
+          <div><span>خدمة البيانات</span><strong id="connectionRecoveryDataState">بانتظار الفحص</strong></div>
+          <div><span>Modon</span><strong id="connectionRecoveryModonState">بانتظار الفحص</strong></div>
+        </div>
+        <div class="connection-recovery-note">إعادة الاتصال لا تعيد إرسال الفاتورة أو الطلب تلقائيًا، وذلك لمنع تكرار العملية.</div>
+        <div class="connection-recovery-actions">
+          <button class="ghost" type="button" id="closeConnectionRecovery">إغلاق</button>
+          <button class="primary" type="button" id="retryConnectionNow">↻ إعادة الاتصال</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-layer hidden" id="salesReturnModal" aria-hidden="true">
+      <form class="modal-card financial-confirm-modal form sales-return-modal" id="salesReturnForm" role="dialog" aria-modal="true" aria-labelledby="salesReturnTitle">
+        <div class="panel-head"><div><span class="eyebrow">إرجاع مبيعات</span><h2 id="salesReturnTitle">إرجاع من فاتورة الزبون</h2><span class="hint" id="salesReturnInvoiceLabel"></span></div><button class="icon-button" type="button" id="closeSalesReturn">×</button></div>
+        <div id="salesReturnLines" class="sales-return-lines"></div>
+        <div class="sales-return-summary"><span>إجمالي الإرجاع</span><strong id="salesReturnTotal">0 د.ع</strong></div>
+        <label>ملاحظة الإرجاع<textarea name="notes" rows="2" placeholder="سبب الإرجاع (اختياري)"></textarea></label>
+        <div class="actions"><button class="ghost" type="button" id="cancelSalesReturn">إلغاء</button><button class="primary" type="submit">تأكيد الإرجاع</button></div>
+      </form>
+    </div>
+
+    <datalist id="categoryOptions"></datalist>
+    <script src="vendor/zxing-browser-0.2.0.min.js?v=20260723-barcode-fallback" onload="document.documentElement.dataset.zxingStatus = window.ZXingBrowser?.BrowserMultiFormatReader ? 'ready' : 'missing'" onerror="document.documentElement.dataset.zxingStatus = 'failed'"></script>
+    <script src="app.js?v=20260801-form-reset-v61"></script>
+  </body>
+</html>
+
+
+
+
+
+
+

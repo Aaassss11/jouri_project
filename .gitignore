@@ -1,0 +1,10 @@
+PRIVATE-*
+*.zip
+*.bak
+backup-*/
+jouri-cloudflare-*/
+node_modules/
+.env
+.env.*
+!.env.example
+

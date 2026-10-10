@@ -1,0 +1,17 @@
+{
+  "emp-1": {
+    "username": "employee_1_modon_username",
+    "password": "employee_1_modon_password",
+    "token": ""
+  },
+  "emp-2": {
+    "username": "employee_2_modon_username",
+    "password": "employee_2_modon_password",
+    "token": ""
+  },
+  "emp-3": {
+    "username": "employee_3_modon_username",
+    "password": "employee_3_modon_password",
+    "token": ""
+  }
+}
