@@ -1,0 +1,92 @@
+/* Jouri soft-pink visual theme — presentation only; app logic is unchanged */
+:root {
+  --bg: #fff7fa;
+  --surface: #ffffff;
+  --surface-soft: #fff9fb;
+  --surface-muted: #fff0f5;
+  --ink: #49323d;
+  --muted: #927985;
+  --line: #f0dce5;
+  --brand: #c65d87;
+  --brand-dark: #984365;
+  --accent: #b76c91;
+  --accent-soft: #fff0f6;
+  --danger: #b83250;
+  --issue: #9a5b00;
+  --ok: #087b44;
+  --shadow: 0 12px 34px rgba(143, 73, 103, .08);
+  --shadow-strong: 0 22px 54px rgba(143, 73, 103, .15);
+}
+html { background: #fff7fa; }
+body { background: #fff7fa; color: var(--ink); }
+.sidebar {
+  background: linear-gradient(180deg, #fff 0%, #fff5f9 100%);
+  border-color: #f0dce5;
+}
+.brand-mark {
+  background: linear-gradient(145deg, #e8a6c0, #bd5b86) !important;
+  color: #fff !important;
+  box-shadow: 0 7px 18px rgba(189,91,134,.22);
+}
+.nav-item { border-radius: 12px; transition: background .18s ease, color .18s ease, transform .18s ease; }
+.nav-item:hover { background: #ffedf4; transform: translateX(-2px); }
+.nav-item.active, .nav-item[aria-current="page"] {
+  background: #fbe2ec !important;
+  color: #9e416b !important;
+  box-shadow: inset -3px 0 #c65d87;
+}
+.panel, .login-card, .boot-card, .modal-card, .dashboard-visual-panel,
+.dashboard-quick-card, .dashboard-modon-today, .dashboard-command-header {
+  border-color: #f0dce5 !important;
+  border-radius: 18px !important;
+  box-shadow: var(--shadow);
+}
+.panel { background: #fff !important; }
+.page-heading h1, .page-heading h2, .panel h2, .panel h3 { color: #70465a; }
+button.primary, .primary, button[type="submit"] {
+  background: linear-gradient(135deg, #d77fa3, #b94f7d) !important;
+  border-color: #bd5b86 !important;
+  color: #fff !important;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(189,91,134,.15);
+}
+button.primary:hover, .primary:hover, button[type="submit"]:hover {
+  filter: brightness(.97);
+  transform: translateY(-1px);
+}
+button.ghost, .ghost, button.secondary {
+  border-color: #edcbd9;
+  color: #9e416b;
+  background: #fff8fb;
+  border-radius: 11px;
+}
+input, select, textarea {
+  border-color: #ead4df !important;
+  border-radius: 10px !important;
+  background-color: #fffdfd;
+}
+input:focus, select:focus, textarea:focus {
+  outline: 3px solid rgba(214,127,163,.18);
+  border-color: #d77fa3 !important;
+}
+table thead th { background: #fff0f5; color: #7e4c63; }
+table tbody tr:hover { background: #fff8fb; }
+.badge, .status-badge, .pill { border-radius: 999px; }
+.dashboard-quick-card {
+  background: linear-gradient(145deg, #fff, #fff6fa) !important;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.dashboard-quick-card:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(143,73,103,.13); }
+.dashboard-quick-icon { background: #fbe2ec !important; color: #a44770 !important; border-radius: 14px; }
+.mobile-menu-button { background: #c65d87 !important; color: #fff !important; border-radius: 12px; }
+.mobile-nav-backdrop { background: rgba(78,42,59,.35); }
+.login-screen { background: radial-gradient(ellipse at top, #fff 0%, #fff2f7 55%, #fbe2ec 100%); }
+.login-card { background: rgba(255,255,255,.96) !important; }
+.boot-card { background: #fff !important; }
+.loader-bar span { background: linear-gradient(90deg, #e8a6c0, #bd5b86) !important; }
+a { color: #a44770; }
+::selection { background: #f5cbdc; color: #49323d; }
+@media (prefers-reduced-motion: no-preference) {
+  .panel, .dashboard-quick-card, .login-card { animation: jouriPinkAppear .28s ease both; }
+  @keyframes jouriPinkAppear { from { opacity: .75; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+}
