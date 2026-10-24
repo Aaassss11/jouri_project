@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#244638" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icons/icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <title>جوري للمفروشات - البرنامج المحاسبي</title>
     <link rel="stylesheet" href="styles.css?v=20260724-perf-storm-v31" />
   </head>
@@ -1794,6 +1801,15 @@
     <datalist id="categoryOptions"></datalist>
     <script src="vendor/zxing-browser-0.2.0.min.js?v=20260723-barcode-fallback" onload="document.documentElement.dataset.zxingStatus = window.ZXingBrowser?.BrowserMultiFormatReader ? 'ready' : 'missing'" onerror="document.documentElement.dataset.zxingStatus = 'failed'"></script>
     <script src="app.js?v=20260801-form-reset-v61"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function (error) {
+            console.error('تعذر تفعيل خدمة التطبيق:', error);
+          });
+        });
+      }
+    </script>
   </body>
 </html>
 
