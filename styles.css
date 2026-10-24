@@ -1,20 +1,20 @@
 :root {
-  --bg: #eef2ef;
+  --bg: #f8edf2;
   --surface: #ffffff;
-  --surface-soft: #f8faf7;
-  --surface-muted: #f3f6f4;
-  --ink: #1f2723;
-  --muted: #6f766f;
-  --line: #dce3dc;
-  --brand: #106b55;
-  --brand-dark: #0b4b3e;
-  --accent: #24658f;
-  --accent-soft: #eaf3fa;
+  --surface-soft: #fff7fa;
+  --surface-muted: #f6e7ee;
+  --ink: #27151e;
+  --muted: #59434d;
+  --line: #e4c4d2;
+  --brand: #a82f63;
+  --brand-dark: #762044;
+  --accent: #8e315a;
+  --accent-soft: #fbe7f0;
   --danger: #b83232;
   --issue: #9a5b00;
   --ok: #087b44;
-  --shadow: 0 16px 44px rgba(26, 45, 38, 0.08);
-  --shadow-strong: 0 24px 70px rgba(19, 54, 44, 0.16);
+  --shadow: 0 12px 32px rgba(95, 35, 62, 0.09);
+  --shadow-strong: 0 20px 52px rgba(95, 35, 62, 0.16);
   font-family: "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
@@ -15387,3 +15387,94 @@ body.sidebar-collapsed .sidebar{width:78px}body.sidebar-collapsed .app{margin-ri
 #saleInvoiceSummary .sale-summary-total { border: 1px solid #d9b38a; background: #fdf6ec; }
 #saleInvoiceSummary .sale-summary-total strong { color: #a5641a; font-size: 17px; }
 #saleInvoiceSummary .outstanding strong { color: #b5710f; }
+
+
+/* Jouri Pink UI refresh v3: higher contrast, app-like surfaces and clearer navigation */
+:root {
+  color-scheme: light;
+  --bg: #f8edf2;
+  --surface: #ffffff;
+  --surface-soft: #fff7fa;
+  --surface-muted: #f6e7ee;
+  --ink: #27151e;
+  --muted: #59434d;
+  --line: #e4c4d2;
+  --brand: #a82f63;
+  --brand-dark: #762044;
+  --accent: #8e315a;
+  --accent-soft: #fbe7f0;
+  --shadow: 0 12px 32px rgba(95, 35, 62, 0.09);
+  --shadow-strong: 0 20px 52px rgba(95, 35, 62, 0.16);
+}
+html, body { background: var(--bg); color: var(--ink); }
+body { font-weight: 500; }
+h1, h2, h3, h4, strong, b, label, .page-heading, .nav-item-label,
+.panel-head, .metric, .dashboard-quick-card, button { color: var(--ink); }
+p, small, .muted, .hint, .subtle, .page-subtitle { color: #59434d; }
+button, input, select, textarea { font: inherit; }
+input, select, textarea {
+  color: #27151e !important;
+  background: #fff !important;
+  border-color: #d9afc1 !important;
+  border-radius: 12px;
+  font-weight: 600;
+}
+input::placeholder, textarea::placeholder { color: #78616b !important; opacity: 1; }
+button, .primary, .page-action, .nav-item, .dashboard-quick-card {
+  transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+button, .primary, .page-action {
+  border-radius: 12px;
+  font-weight: 800;
+}
+.primary, button.primary, .page-action.primary {
+  color: #fff !important;
+  background: linear-gradient(135deg, #b83e72, #8d2855) !important;
+  border-color: #8d2855 !important;
+  box-shadow: 0 5px 14px rgba(141, 40, 85, .18);
+}
+.primary:hover, button.primary:hover, .page-action.primary:hover { filter: brightness(.96); transform: translateY(-1px); }
+.panel, .card, .login-card, .dashboard-visual-panel, .dashboard-modon-today,
+.dashboard-quick-card, .metric, .modal, .dialog, .table-wrap, .form-section {
+  border-color: #e7c9d6;
+  box-shadow: 0 8px 24px rgba(95, 35, 62, .07);
+}
+.panel, .dashboard-visual-panel, .dashboard-modon-today, .login-card {
+  border-radius: 18px;
+}
+.nav-item {
+  border-radius: 12px;
+  color: #3a202c;
+  font-weight: 700;
+}
+.nav-item:hover { background: #f9e1eb; }
+.nav-item.active {
+  color: #762044 !important;
+  background: #f4cddd !important;
+  box-shadow: inset 3px 0 0 #a82f63;
+}
+.nav-item-icon, .nav-group-icon, .dashboard-quick-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #f8e1eb;
+  color: #8d2855;
+  font-weight: 900;
+}
+.nav-item.active .nav-item-icon { background: #fff; color: #8d2855; }
+.dashboard-quick-card {
+  background: #fff !important;
+  border: 1px solid #e7c9d6 !important;
+  border-radius: 16px !important;
+  color: #27151e !important;
+}
+.dashboard-quick-card:hover { background: #fff6fa !important; border-color: #ce8eaa !important; transform: translateY(-2px); }
+table th { background: #f7e3ec; color: #542039; font-weight: 900; }
+table td { color: #27151e; }
+.badge, .status, .chip { font-weight: 800; }
+:focus-visible { outline: 3px solid #c65d87 !important; outline-offset: 2px; }
+@media (max-width: 700px) {
+  .panel, .dashboard-visual-panel, .dashboard-modon-today, .login-card { border-radius: 15px; }
+  button, .primary, .page-action { min-height: 42px; }
+}
