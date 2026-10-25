@@ -11,7 +11,8 @@
     <link rel="icon" href="/icons/icon-192.png" type="image/png" />
     <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <title>جوري للمفروشات - البرنامج المحاسبي</title>
-    <link rel="stylesheet" href="styles.css?v=20261024-jouri-pink-v3" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css?v=jouri-pink-bottomnav-v1" />
   </head>
   <body>
     <button class="mobile-menu-button" type="button" id="mobileMenuButton" aria-label="فتح القائمة">☰</button>
@@ -1809,6 +1810,52 @@
           });
         });
       }
+    </script>
+
+    <script>
+      (function () {
+        const setup = function () {
+          if (document.getElementById('jouriBottomNav')) return;
+          const nav = document.createElement('nav');
+          nav.id = 'jouriBottomNav';
+          nav.className = 'jouri-bottom-nav';
+          nav.setAttribute('aria-label', 'التنقل السريع');
+          nav.innerHTML = `
+            <button type="button" class="jouri-bottom-item is-active" data-jouri-view="dashboard" aria-label="الرئيسية"><i class="fa-solid fa-house" aria-hidden="true"></i><span>الرئيسية</span></button>
+            <button type="button" class="jouri-bottom-item" data-jouri-view="sales" aria-label="المبيعات"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i><span>المبيعات</span></button>
+            <button type="button" class="jouri-bottom-item" data-jouri-view="products" aria-label="المنتجات"><i class="fa-solid fa-box-open" aria-hidden="true"></i><span>المنتجات</span></button>
+            <button type="button" class="jouri-bottom-item" data-jouri-view="customers" aria-label="الزبائن"><i class="fa-solid fa-users" aria-hidden="true"></i><span>الزبائن</span></button>
+            <button type="button" class="jouri-bottom-item" data-jouri-more="1" aria-label="المزيد"><i class="fa-solid fa-grip" aria-hidden="true"></i><span>المزيد</span></button>`;
+          document.body.appendChild(nav);
+          const syncActive = function () {
+            const active = document.querySelector('.nav-item.active[data-view]')?.getAttribute('data-view') || 'dashboard';
+            nav.querySelectorAll('[data-jouri-view]').forEach(btn => btn.classList.toggle('is-active', btn.dataset.jouriView === active));
+            if (active === 'invoiceArchive' || active === 'purchaseInvoices' || active === 'inventory' || active === 'suppliers' || active === 'reports' || active === 'employees' || active === 'settings' || active === 'vouchers' || active === 'modonFollow') {
+              nav.querySelectorAll('[data-jouri-view]').forEach(btn => btn.classList.remove('is-active'));
+              nav.querySelector('[data-jouri-more]')?.classList.add('is-active');
+            } else nav.querySelector('[data-jouri-more]')?.classList.remove('is-active');
+          };
+          nav.addEventListener('click', function (event) {
+            const btn = event.target.closest('button');
+            if (!btn) return;
+            if (btn.hasAttribute('data-jouri-more')) {
+              document.body.classList.add('mobile-nav-open');
+              return;
+            }
+            const target = document.querySelector('.nav-item[data-view="' + btn.dataset.jouriView + '"]');
+            if (target) target.click();
+            syncActive();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+          document.addEventListener('click', function (event) {
+            if (event.target.closest('.nav-item[data-view]') || event.target.closest('[data-view-jump]')) setTimeout(syncActive, 40);
+          });
+          const observer = new MutationObserver(syncActive);
+          document.querySelectorAll('.nav-item[data-view]').forEach(el => observer.observe(el, { attributes: true, attributeFilter: ['class'] }));
+          syncActive();
+        };
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
+      })();
     </script>
   </body>
 </html>
